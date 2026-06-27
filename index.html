@@ -482,7 +482,8 @@ footer{background:var(--primary);color:#fff;padding:80px 0 24px}
    ADMIN PANEL
 ============================================================ */
 .admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
-.admin-stat-card{border-radius:12px;padding:16px;text-align:center}
+.admin-stat-card{border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:var(--tr)}
+.admin-stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .admin-stat-card i{font-size:22px;margin-bottom:8px;display:block}
 .admin-stat-card strong{display:block;font-size:24px;font-family:'Playfair Display',serif;line-height:1}
 .admin-stat-card span{font-size:11px;opacity:.7;margin-top:4px;display:block}
@@ -494,107 +495,69 @@ footer{background:var(--primary);color:#fff;padding:80px 0 24px}
 .admin-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 .admin-table tbody tr:nth-child(even){background:var(--light)}
 .admin-table tbody tr:hover{background:rgba(201,151,58,.06)}
+/* Admin search */
+.admin-search{width:100%;padding:10px 16px;border:1px solid var(--border);border-radius:10px;font-size:13px;font-family:inherit;outline:none;margin-bottom:14px;transition:var(--tr)}
+.admin-search:focus{border-color:var(--secondary)}
+/* Admin tab bar */
+.admin-tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:20px;overflow-x:auto}
+.admin-tab-btn{padding:10px 18px;border:none;background:none;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:var(--tr)}
+.admin-tab-btn.active{color:var(--secondary);border-bottom-color:var(--secondary)}
+.admin-tab-panel{display:none}.admin-tab-panel.active{display:block}
+/* Revenue cards */
+.rev-card{background:var(--light);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.rev-card strong{display:block;font-size:20px;font-family:'Playfair Display',serif;color:var(--primary);margin:4px 0}
+.rev-card span{font-size:11px;color:var(--gray)}
 /* ============================================================
    MEETING MODAL INPUTS
 ============================================================ */
 .meet-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:var(--tr);background:#fff;color:var(--dark)}
 .meet-input:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(201,151,58,.1)}
 input[type="date"].meet-input{cursor:pointer}
+/* ============================================================
+   DASHBOARD TABS
+============================================================ */
+.dash-tab-bar{display:flex;border-bottom:2px solid var(--border);margin-bottom:20px;overflow-x:auto;gap:0}
+.dash-tab-btn{padding:11px 16px;border:none;background:none;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:var(--tr);display:flex;align-items:center;gap:6px}
+.dash-tab-btn.active{color:var(--secondary);border-bottom-color:var(--secondary)}
+.dash-tab-btn i{font-size:14px}
+.dash-tab-panel{display:none}.dash-tab-panel.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* Cart */
+.cart-item-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--light);border:1px solid var(--border);border-radius:12px;margin-bottom:10px}
+.cart-item-icon{width:40px;height:40px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--secondary);flex-shrink:0}
+.cart-item-body{flex:1}
+.cart-item-name{font-size:14px;font-weight:600;color:var(--primary)}
+.cart-item-price{font-size:13px;color:var(--green);font-weight:600;margin-top:2px}
+.cart-remove-btn{background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:7px 12px;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer;transition:var(--tr);white-space:nowrap}
+.cart-remove-btn:hover{background:#dc2626;color:#fff}
+.cart-summary{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:14px;padding:18px;margin-top:14px;color:#fff}
+.cart-sum-row{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.75);margin-bottom:8px}
+.cart-sum-row.total{font-size:15px;font-weight:700;color:#fff;border-top:1px solid rgba(255,255,255,.2);padding-top:10px;margin-top:4px;margin-bottom:0}
+.cart-checkout-btn{width:100%;margin-top:14px;padding:14px;border-radius:50px;border:none;background:var(--secondary);color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:8px}
+.cart-checkout-btn:hover{background:#e0a845;transform:translateY(-2px)}
+/* Reports */
+.report-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--light);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;transition:var(--tr)}
+.report-item:hover{box-shadow:var(--shadow);border-color:var(--secondary)}
+.report-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#fff}
+.report-body{flex:1}
+.report-name{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:2px}
+.report-desc{font-size:12px;color:var(--gray)}
+.report-dl-btn{background:var(--primary);border:none;border-radius:8px;padding:9px 14px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:5px}
+.report-dl-btn:hover{background:var(--secondary)}
+/* Profile form */
+.profile-avatar-wrap{text-align:center;margin-bottom:24px}
+.profile-big-avatar{width:72px;height:72px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:30px;font-family:'Playfair Display',serif;font-weight:700;color:var(--secondary);margin:0 auto 10px}
+.profile-name-tag{font-size:15px;font-weight:700;color:var(--primary)}
+.profile-email-tag{font-size:13px;color:var(--gray)}
+.profile-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* cart badge */
+.cart-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:50%;margin-left:4px;line-height:1}
 @media(max-width:768px){
   .admin-stats{grid-template-columns:1fr 1fr}
   .rzp-info-row{gap:6px}
   .rzp-info-item{font-size:11px;padding:10px 6px}
+  .profile-form-grid{grid-template-columns:1fr}
 }
-
-
-/* ============================================================
-   UPGRADED DASHBOARD STYLES
-============================================================ */
-.dash-tab-btn{
-  background:none;border:none;padding:14px 18px;font-size:13px;font-weight:600;
-  color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;
-  margin-bottom:-2px;transition:var(--tr);display:flex;align-items:center;gap:7px;white-space:nowrap
-}
-.dash-tab-btn.active{color:var(--secondary);border-bottom-color:var(--secondary)}
-.dash-tab-btn:hover{color:var(--primary)}
-.dash-tab-content{animation:fadeIn .25s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* Cart item */
-.cart-item-row{
-  display:flex;align-items:center;gap:14px;padding:14px 16px;
-  background:var(--light);border:1px solid var(--border);border-radius:12px;margin-bottom:10px
-}
-.cart-item-icon{width:40px;height:40px;background:var(--primary);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--secondary);flex-shrink:0}
-.cart-item-name{flex:1;font-size:14px;font-weight:600;color:var(--primary)}
-.cart-item-price{font-size:15px;font-weight:700;color:var(--green);white-space:nowrap}
-.cart-remove-btn{background:#fef2f2;border:none;border-radius:8px;
-  padding:7px 12px;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer;transition:var(--tr);white-space:nowrap}
-.cart-remove-btn:hover{background:#dc2626;color:#fff}
-.cart-summary-box{background:linear-gradient(135deg,var(--primary),#1a4b8a);border-radius:14px;
-  padding:20px;margin-top:16px;color:#fff}
-.cart-summary-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:10px;color:rgba(255,255,255,.8)}
-.cart-summary-row.total{font-size:16px;font-weight:700;color:#fff;border-top:1px solid rgba(255,255,255,.2);padding-top:10px;margin-top:4px}
-.cart-checkout-btn{width:100%;margin-top:14px;padding:14px;border-radius:50px;border:none;
-  background:var(--secondary);color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:var(--tr);
-  display:flex;align-items:center;justify-content:center;gap:8px}
-.cart-checkout-btn:hover{background:#e0a845;transform:translateY(-2px)}
-
-/* Report item */
-.report-item{display:flex;align-items:center;gap:14px;padding:14px 16px;
-  background:var(--light);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;transition:var(--tr)}
-.report-item:hover{box-shadow:var(--shadow);border-color:var(--secondary)}
-.report-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;font-size:20px;flex-shrink:0}
-.report-info{flex:1}
-.report-name{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:3px}
-.report-desc{font-size:12px;color:var(--gray)}
-.report-dl-btn{background:var(--primary);border:none;border-radius:8px;padding:9px 16px;
-  color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:var(--tr);
-  display:flex;align-items:center;gap:6px;white-space:nowrap}
-.report-dl-btn:hover{background:var(--secondary)}
-
-/* Activity feed */
-.activity-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
-.activity-item:last-child{border-bottom:none}
-.activity-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px}
-.activity-text{flex:1;font-size:13px;color:var(--dark)}
-.activity-time{font-size:11px;color:var(--gray);margin-top:3px}
-
-/* Order row enhanced */
-.dash-order-row{display:flex;align-items:center;gap:14px;padding:16px;
-  background:var(--light);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;transition:var(--tr)}
-.dash-order-row:hover{box-shadow:var(--shadow)}
-.dash-order-icon{width:44px;height:44px;background:var(--primary);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--secondary);flex-shrink:0}
-.dash-order-info{flex:1}
-.dash-order-name{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:4px}
-.dash-order-meta{font-size:12px;color:var(--gray)}
-.dash-order-actions{display:flex;gap:8px}
-.dash-order-dl{background:var(--primary);color:#fff;border:none;border-radius:8px;
-  padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:var(--tr);
-  display:flex;align-items:center;gap:5px}
-.dash-order-dl:hover{background:var(--secondary)}
-
-/* Admin enhanced */
-.admin-clickable-stat{cursor:pointer;transition:var(--tr)}
-.admin-clickable-stat:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
-.admin-detail-panel{display:none;margin-top:16px}
-.admin-detail-panel.show{display:block}
-.admin-tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:20px}
-.admin-tab{background:none;border:none;padding:12px 18px;font-size:13px;font-weight:600;
-  color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:var(--tr)}
-.admin-tab.active{color:var(--secondary);border-bottom-color:var(--secondary)}
-
-/* Profile section */
-.profile-avatar-section{text-align:center;margin-bottom:24px}
-.profile-big-avatar{width:72px;height:72px;border-radius:50%;background:var(--primary);
-  display:flex;align-items:center;justify-content:center;font-size:30px;font-family:'Playfair Display',serif;
-  font-weight:700;color:var(--secondary);margin:0 auto 12px}
-.profile-avatar-name{font-size:15px;font-weight:700;color:var(--primary)}
-.profile-avatar-email{font-size:13px;color:var(--gray)}
 
 </style>
 </head>
@@ -829,6 +792,9 @@ input[type="date"].meet-input{cursor:pointer}
         <button class="pkg-buy-btn" onclick="openPurchase('TDS &amp; TCS Package','5000',['TDS/TCS Calculation','Quarterly Return Filing','Form 16/16A','Challan Payment','Email Support'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹5,000/yr
         </button>
+        <button class="pkg-buy-btn" style="margin-top:10px;background:transparent;border-color:var(--secondary);color:var(--secondary)" onclick="addToCart('TDS &amp; TCS Package','5000',['TDS/TCS Calculation','Quarterly Return Filing','Form 16/16A','Challan Payment','Email Support'])">
+          <i class="fas fa-cart-plus"></i> Add to Cart
+        </button>
       </div>
 
       <!-- GST -->
@@ -851,6 +817,9 @@ input[type="date"].meet-input{cursor:pointer}
         </ul>
         <button class="pkg-buy-btn" onclick="openPurchase('GST Package','5000',['GSTR-1 Monthly Filing','GSTR-3B Monthly Filing','GSTR-9 Annual Return','GST Reconciliation','Email & Phone Support'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹5,000/yr
+        </button>
+        <button class="pkg-buy-btn" style="margin-top:10px;background:transparent;border-color:var(--secondary);color:var(--secondary)" onclick="addToCart('GST Package','5000',['GSTR-1 Monthly Filing','GSTR-3B Monthly Filing','GSTR-9 Annual Return','GST Reconciliation','Email & Phone Support'])">
+          <i class="fas fa-cart-plus"></i> Add to Cart
         </button>
       </div>
 
@@ -875,6 +844,9 @@ input[type="date"].meet-input{cursor:pointer}
         <button class="pkg-buy-btn" onclick="openPurchase('EPF &amp; ESIC Package','10000',['Monthly EPF Challan & ECR','Monthly ESIC Challan','Employee Registration','PF Withdrawal Help','Annual Returns','Phone & WhatsApp Support'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹10,000/yr
         </button>
+        <button class="pkg-buy-btn" style="margin-top:10px;background:transparent;border-color:var(--secondary);color:var(--secondary)" onclick="addToCart('EPF &amp; ESIC Package','10000',['Monthly EPF Challan & ECR','Monthly ESIC Challan','Employee Registration','PF Withdrawal Help','Annual Returns','Phone & WhatsApp Support'])">
+          <i class="fas fa-cart-plus"></i> Add to Cart
+        </button>
       </div>
 
       <!-- Basic Accounting -->
@@ -897,6 +869,9 @@ input[type="date"].meet-input{cursor:pointer}
         </ul>
         <button class="pkg-buy-btn" onclick="openPurchase('Basic Accounting Package','12000',['Monthly Bookkeeping','Ledger Maintenance','GST Monthly Filing','P&L Statement','Bank Reconciliation','Email & Phone Support'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹12,000/yr
+        </button>
+        <button class="pkg-buy-btn" style="margin-top:10px;background:transparent;border-color:var(--secondary);color:var(--secondary)" onclick="addToCart('Basic Accounting Package','12000',['Monthly Bookkeeping','Ledger Maintenance','GST Monthly Filing','P&L Statement','Bank Reconciliation','Email & Phone Support'])">
+          <i class="fas fa-cart-plus"></i> Add to Cart
         </button>
       </div>
 
@@ -922,6 +897,9 @@ input[type="date"].meet-input{cursor:pointer}
         </ul>
         <button class="pkg-buy-btn" onclick="openPurchase('Standard Accounting Package','18000',['Complete Accounting','GST Monthly Filing','TDS Quarterly Return','ITR Filing','MIS Reports','Quarterly Review','Priority Support'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹18,000/yr
+        </button>
+        <button class="pkg-buy-btn" style="margin-top:10px;background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5);color:#fff" onclick="addToCart('Standard Accounting Package','18000',['Complete Accounting','GST Monthly Filing','TDS Quarterly Return','ITR Filing','MIS Reports','Quarterly Review','Priority Support'])">
+          <i class="fas fa-cart-plus"></i> Add to Cart
         </button>
       </div>
 
@@ -949,6 +927,9 @@ input[type="date"].meet-input{cursor:pointer}
         </ul>
         <button class="pkg-buy-btn" onclick="openPurchase('All Accounting Package','28000',['Complete Accounting','GST Filing (GSTR-1,3B,9)','TDS/TCS Returns','EPF & ESIC Compliance','ITR + Tax Planning','ROC Compliance','Payroll Processing','Monthly Review','Dedicated Manager'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹28,000/yr
+        </button>
+        <button class="pkg-buy-btn" style="margin-top:10px;background:transparent;border-color:var(--secondary);color:var(--secondary)" onclick="addToCart('All Accounting Package','28000',['Complete Accounting','GST Filing (GSTR-1,3B,9)','TDS/TCS Returns','EPF & ESIC Compliance','ITR + Tax Planning','ROC Compliance','Payroll Processing','Monthly Review','Dedicated Manager'])">
+          <i class="fas fa-cart-plus"></i> Add to Cart
         </button>
       </div>
 
@@ -1311,7 +1292,7 @@ input[type="date"].meet-input{cursor:pointer}
 </div>
 
 <!-- ============================================================
-     DASHBOARD MODAL - UPGRADED
+     DASHBOARD MODAL (TABBED)
 ============================================================ -->
 <div class="modal-overlay dashboard-modal" id="dashboardModal">
   <div class="modal-box" style="max-width:860px">
@@ -1321,96 +1302,104 @@ input[type="date"].meet-input{cursor:pointer}
         <div class="dash-user-info">
           <h3 id="dashName">Welcome</h3>
           <span id="dashEmail">user@email.com</span>
-          <span id="dashBiz" style="display:block;font-size:11px;color:rgba(255,255,255,.5);margin-top:2px"></span>
         </div>
       </div>
       <button class="modal-close" onclick="closeModal('dashboardModal')" style="background:rgba(255,255,255,.15);color:#fff"><i class="fas fa-times"></i></button>
     </div>
-
-    <!-- DASH TABS -->
-    <div style="display:flex;border-bottom:2px solid var(--border);background:#fff;padding:0 28px">
-      <button class="dash-tab-btn active" onclick="switchDashTab('overview')" id="dtab-overview"><i class="fas fa-th-large"></i> Overview</button>
-      <button class="dash-tab-btn" onclick="switchDashTab('orders')" id="dtab-orders"><i class="fas fa-box-open"></i> My Orders</button>
-      <button class="dash-tab-btn" onclick="switchDashTab('cart')" id="dtab-cart"><i class="fas fa-shopping-cart"></i> Cart <span id="cartBadge" style="background:var(--secondary);color:#fff;border-radius:50px;padding:1px 7px;font-size:10px;margin-left:4px">0</span></button>
-      <button class="dash-tab-btn" onclick="switchDashTab('profile')" id="dtab-profile"><i class="fas fa-user-edit"></i> Profile</button>
-      <button class="dash-tab-btn" onclick="switchDashTab('reports')" id="dtab-reports"><i class="fas fa-download"></i> Reports</button>
-    </div>
-
-    <div class="dash-body" style="max-height:65vh;overflow-y:auto">
+    <div class="dash-body">
+      <!-- STATS ROW -->
+      <div class="dash-stats">
+        <div class="dash-stat-card"><i class="fas fa-box-open"></i><strong id="dashPkgCount">0</strong><span>Active Packages</span></div>
+        <div class="dash-stat-card"><i class="fas fa-rupee-sign"></i><strong id="dashSpent">₹0</strong><span>Total Paid</span></div>
+        <div class="dash-stat-card" style="cursor:pointer" onclick="switchDashTab('cart')"><i class="fas fa-shopping-cart"></i><strong id="dashCartCount">0 <span class="cart-badge" id="dashCartBadge" style="display:none">0</span></strong><span>Cart Items</span></div>
+      </div>
+      <!-- TAB BAR -->
+      <div class="dash-tab-bar">
+        <button class="dash-tab-btn active" id="dtab-overview" onclick="switchDashTab('overview')"><i class="fas fa-th-large"></i> Overview</button>
+        <button class="dash-tab-btn" id="dtab-packages" onclick="switchDashTab('packages')"><i class="fas fa-box-open"></i> My Packages</button>
+        <button class="dash-tab-btn" id="dtab-cart" onclick="switchDashTab('cart')"><i class="fas fa-shopping-cart"></i> Cart</button>
+        <button class="dash-tab-btn" id="dtab-reports" onclick="switchDashTab('reports')"><i class="fas fa-download"></i> Reports</button>
+        <button class="dash-tab-btn" id="dtab-profile" onclick="switchDashTab('profile')"><i class="fas fa-user-edit"></i> Profile</button>
+      </div>
 
       <!-- OVERVIEW TAB -->
-      <div id="dashTab-overview" class="dash-tab-content" style="display:block">
-        <div class="dash-stats">
-          <div class="dash-stat-card"><i class="fas fa-box-open"></i><strong id="dashPkgCount">0</strong><span>Packages</span></div>
-          <div class="dash-stat-card"><i class="fas fa-rupee-sign"></i><strong id="dashSpent">₹0</strong><span>Total Paid</span></div>
-          <div class="dash-stat-card"><i class="fas fa-shopping-cart"></i><strong id="dashCartCount">0</strong><span>In Cart</span></div>
-        </div>
+      <div class="dash-tab-panel active" id="dpanel-overview">
         <p class="dash-section-title"><i class="fas fa-bolt"></i> Quick Actions</p>
         <div class="dash-quick-links">
           <button class="quick-link-btn" onclick="whatsappSupport()"><i class="fas fa-headset"></i> Contact Support</button>
-          <button class="quick-link-btn" onclick="switchDashTab('cart');window.location.href='#packages'"><i class="fas fa-plus-circle"></i> Add to Cart</button>
-          <button class="quick-link-btn" onclick="downloadAllReports()"><i class="fas fa-file-invoice"></i> Download Invoice</button>
+          <button class="quick-link-btn" onclick="closeModal('dashboardModal');document.getElementById('packages').scrollIntoView({behavior:'smooth'})"><i class="fas fa-plus-circle"></i> Browse Packages</button>
+          <button class="quick-link-btn" onclick="whatsappSupport()"><i class="fas fa-file-invoice"></i> Request Invoice</button>
           <button class="quick-link-btn" onclick="closeModal('dashboardModal');openMeetingModal()"><i class="fas fa-calendar-check"></i> Schedule Meeting</button>
-          <button class="quick-link-btn" onclick="switchDashTab('profile')"><i class="fas fa-user-edit"></i> Edit Profile</button>
-          <button class="quick-link-btn" onclick="switchDashTab('reports')"><i class="fas fa-download"></i> Download Reports</button>
         </div>
-        <p class="dash-section-title" style="margin-top:16px"><i class="fas fa-info-circle"></i> Recent Activity</p>
-        <div id="dashActivity"></div>
+        <p class="dash-section-title" style="margin-top:4px"><i class="fas fa-box-open"></i> Recent Packages</p>
+        <div id="dashOverviewPkgs"></div>
         <button class="logout-btn" onclick="doLogout()"><i class="fas fa-right-from-bracket"></i> Logout</button>
       </div>
 
-      <!-- ORDERS TAB -->
-      <div id="dashTab-orders" class="dash-tab-content" style="display:none">
-        <p class="dash-section-title"><i class="fas fa-box-open"></i> My Purchased Packages</p>
-        <div id="dashPackages"></div>
+      <!-- MY PACKAGES TAB -->
+      <div class="dash-tab-panel" id="dpanel-packages">
+        <p class="dash-section-title"><i class="fas fa-box-open"></i> All My Packages</p>
+        <div id="dashPackages">
+          <div class="dash-empty"><i class="fas fa-box-open"></i><p>No packages purchased yet.</p></div>
+        </div>
       </div>
 
       <!-- CART TAB -->
-      <div id="dashTab-cart" class="dash-tab-content" style="display:none">
+      <div class="dash-tab-panel" id="dpanel-cart">
         <p class="dash-section-title"><i class="fas fa-shopping-cart"></i> My Cart</p>
         <div id="dashCartItems"></div>
-        <div id="dashCartSummary"></div>
-      </div>
-
-      <!-- PROFILE TAB -->
-      <div id="dashTab-profile" class="dash-tab-content" style="display:none">
-        <p class="dash-section-title"><i class="fas fa-user-edit"></i> Update Profile</p>
-        <div class="auth-input-group">
-          <label>Full Name</label>
-          <input type="text" id="profileName" class="meet-input" placeholder="Your full name">
-        </div>
-        <div class="auth-input-group">
-          <label>Mobile Number</label>
-          <input type="tel" id="profilePhone" class="meet-input" placeholder="+91 XXXXX XXXXX">
-        </div>
-        <div class="auth-input-group">
-          <label>Business / Firm Name</label>
-          <input type="text" id="profileBiz" class="meet-input" placeholder="Business name">
-        </div>
-        <div class="auth-input-group">
-          <label>GST Number (Optional)</label>
-          <input type="text" id="profileGST" class="meet-input" placeholder="22AAAAA0000A1Z5">
-        </div>
-        <div class="auth-input-group">
-          <label>PAN Number (Optional)</label>
-          <input type="text" id="profilePAN" class="meet-input" placeholder="ABCDE1234F">
-        </div>
-        <div class="auth-input-group">
-          <label>Business Address</label>
-          <textarea id="profileAddr" class="meet-input" placeholder="Full business address..." style="min-height:80px;resize:vertical"></textarea>
-        </div>
-        <div style="background:#f0fdf4;border:1px solid #6ee7b7;border-radius:10px;padding:12px;margin-bottom:14px;font-size:13px;color:#065f46;display:none" id="profileSaveMsg">
-          <i class="fas fa-check-circle"></i> Profile updated successfully!
-        </div>
-        <button class="auth-submit" onclick="saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
       </div>
 
       <!-- REPORTS TAB -->
-      <div id="dashTab-reports" class="dash-tab-content" style="display:none">
-        <p class="dash-section-title"><i class="fas fa-download"></i> Download Reports & Documents</p>
+      <div class="dash-tab-panel" id="dpanel-reports">
+        <p class="dash-section-title"><i class="fas fa-download"></i> Download Reports &amp; Documents</p>
         <div id="dashReportsList"></div>
       </div>
 
+      <!-- PROFILE TAB -->
+      <div class="dash-tab-panel" id="dpanel-profile">
+        <div class="profile-avatar-wrap">
+          <div class="profile-big-avatar" id="profileAvatar">U</div>
+          <div class="profile-name-tag" id="profileNameTag">—</div>
+          <div class="profile-email-tag" id="profileEmailTag">—</div>
+        </div>
+        <div id="profileSaveMsg" style="display:none;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:10px;padding:12px;margin-bottom:14px;font-size:13px;color:#065f46;text-align:center"><i class="fas fa-check-circle"></i> Profile updated successfully!</div>
+        <div class="profile-form-grid">
+          <div class="auth-input-group">
+            <label>Full Name <span style="color:#dc2626">*</span></label>
+            <input type="text" id="profileName" class="meet-input" placeholder="Your full name">
+          </div>
+          <div class="auth-input-group">
+            <label>Mobile Number <span style="color:#dc2626">*</span></label>
+            <input type="tel" id="profilePhone" class="meet-input" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="auth-input-group">
+            <label>Email Address</label>
+            <input type="email" id="profileEmail" class="meet-input" placeholder="your@email.com" readonly style="background:var(--light);color:var(--gray)">
+          </div>
+          <div class="auth-input-group">
+            <label>Business / Firm Name</label>
+            <input type="text" id="profileBusiness" class="meet-input" placeholder="Business name">
+          </div>
+          <div class="auth-input-group">
+            <label>GSTIN (optional)</label>
+            <input type="text" id="profileGstin" class="meet-input" placeholder="22AAAAA0000A1Z5">
+          </div>
+          <div class="auth-input-group">
+            <label>PAN Number (optional)</label>
+            <input type="text" id="profilePan" class="meet-input" placeholder="ABCDE1234F">
+          </div>
+        </div>
+        <div class="auth-input-group">
+          <label>Business Address</label>
+          <textarea id="profileAddress" class="meet-input" placeholder="Full business address..." style="min-height:70px;resize:vertical"></textarea>
+        </div>
+        <div class="auth-input-group">
+          <label>New Password <span style="color:var(--gray);font-weight:400">(leave blank to keep current)</span></label>
+          <input type="password" id="profileNewPass" class="meet-input" placeholder="Enter new password (min 6 chars)">
+        </div>
+        <button class="auth-submit" onclick="saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1435,6 +1424,8 @@ function saveSession(u){ localStorage.setItem('scs_session',JSON.stringify(u)) }
 function clearSession(){ localStorage.removeItem('scs_session') }
 function getUserOrders(email){ try{return JSON.parse(localStorage.getItem('scs_orders_'+email)||'[]')}catch{return[]} }
 function saveUserOrders(email,orders){ localStorage.setItem('scs_orders_'+email,JSON.stringify(orders)) }
+function getCart(){ try{return JSON.parse(localStorage.getItem('scs_cart_'+(currentUser?.email||''))||'[]')}catch{return[]} }
+function saveCart(cart){ localStorage.setItem('scs_cart_'+(currentUser?.email||''),JSON.stringify(cart)) }
 
 /* ======================
    PRELOADER
@@ -1601,32 +1592,244 @@ function doLogout(){
 }
 
 /* ======================
+   DASHBOARD TABS
+====================== */
+function switchDashTab(tab){
+  document.querySelectorAll('.dash-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.dash-tab-panel').forEach(p=>p.classList.remove('active'));
+  const btn=document.getElementById('dtab-'+tab);
+  const panel=document.getElementById('dpanel-'+tab);
+  if(btn) btn.classList.add('active');
+  if(panel) panel.classList.add('active');
+  if(tab==='overview') renderOverviewTab();
+  if(tab==='packages') renderPackagesTab();
+  if(tab==='cart') renderCartTab();
+  if(tab==='reports') renderReportsTab();
+  if(tab==='profile') renderProfileTab();
+}
+
+function updateCartBadge(){
+  const cart=getCart();
+  const badge=document.getElementById('dashCartBadge');
+  const count=document.getElementById('dashCartCount');
+  if(badge){badge.textContent=cart.length;badge.style.display=cart.length?'inline-flex':'none';}
+  if(count) count.firstChild.textContent=cart.length+' ';
+}
+
+/* ======================
    DASHBOARD
 ====================== */
 function openDashboard(){
-  if(!currentUser)return;
+  if(!currentUser) return;
+  const orders=getUserOrders(currentUser.email);
+  const cart=getCart();
   document.getElementById('dashName').textContent=currentUser.name;
   document.getElementById('dashEmail').textContent=currentUser.email;
   document.getElementById('dashAvatar').textContent=currentUser.name.charAt(0).toUpperCase();
-  const orders=getUserOrders(currentUser.email);
   document.getElementById('dashPkgCount').textContent=orders.length;
   const total=orders.reduce((s,o)=>s+Number(o.price),0);
   document.getElementById('dashSpent').textContent='₹'+total.toLocaleString('en-IN');
-  const container=document.getElementById('dashPackages');
-  if(orders.length===0){
-    container.innerHTML='<div class="dash-empty"><i class="fas fa-box-open"></i><p>No packages purchased yet.</p><a href="#packages" class="btn-primary" onclick="closeModal(\'dashboardModal\')" style="margin-top:12px;font-size:13px;display:inline-flex">Browse Packages</a></div>';
+  updateCartBadge();
+  switchDashTab('overview');
+  openModal('dashboardModal');
+}
+
+function renderOverviewTab(){
+  const orders=getUserOrders(currentUser.email);
+  const recent=orders.slice(-3).reverse();
+  const el=document.getElementById('dashOverviewPkgs');
+  if(recent.length===0){
+    el.innerHTML='<div class="dash-empty"><i class="fas fa-box-open"></i><p>No packages yet. <a href="#packages" onclick="closeModal(\'dashboardModal\')" style="color:var(--secondary)">Browse packages →</a></p></div>';
   } else {
-    container.innerHTML=orders.map(o=>`
+    el.innerHTML=recent.map(o=>`
       <div class="dash-package-row">
         <div class="dash-package-info">
           <h4>${o.name}</h4>
-          <span>Order #${o.orderId} · ₹${Number(o.price).toLocaleString('en-IN')}/yr · Purchased ${new Date(o.date).toLocaleDateString('en-IN')}</span>
+          <span>Order #${o.orderId} · ₹${Number(o.price).toLocaleString('en-IN')}/yr · ${new Date(o.date).toLocaleDateString('en-IN')}</span>
         </div>
-        <span class="dash-pkg-badge active">Active</span>
-      </div>
-    `).join('');
+        <span class="dash-pkg-badge ${o.status==='active'?'active':'pending'}">${o.status==='active'?'✓ Active':'⏳ Pending'}</span>
+      </div>`).join('');
   }
-  openModal('dashboardModal');
+}
+
+function renderPackagesTab(){
+  const orders=getUserOrders(currentUser.email);
+  const el=document.getElementById('dashPackages');
+  if(orders.length===0){
+    el.innerHTML='<div class="dash-empty"><i class="fas fa-box-open"></i><p>No packages purchased yet.</p><a href="#packages" class="btn-primary" onclick="closeModal(\'dashboardModal\')" style="margin-top:12px;font-size:13px;display:inline-flex">Browse Packages</a></div>';
+    return;
+  }
+  el.innerHTML=orders.slice().reverse().map(o=>`
+    <div class="dash-package-row">
+      <div class="dash-package-info">
+        <h4>${o.name}</h4>
+        <span>Order #${o.orderId} · ₹${Number(o.price).toLocaleString('en-IN')}/yr · Purchased ${new Date(o.date).toLocaleDateString('en-IN')}</span>
+      </div>
+      <span class="dash-pkg-badge ${o.status==='active'?'active':'pending'}">${o.status==='active'?'✓ Active':'⏳ Pending'}</span>
+    </div>`).join('');
+}
+
+function renderCartTab(){
+  const cart=getCart();
+  const el=document.getElementById('dashCartItems');
+  if(cart.length===0){
+    el.innerHTML='<div class="dash-empty"><i class="fas fa-shopping-cart"></i><p>Your cart is empty.</p><a href="#packages" onclick="closeModal(\'dashboardModal\')" style="color:var(--secondary)">Browse packages →</a></div>';
+    return;
+  }
+  const subtotal=cart.reduce((s,i)=>s+Number(i.price),0);
+  const gst=Math.round(subtotal*0.18);
+  const total=subtotal+gst;
+  el.innerHTML=`
+    ${cart.map((item,idx)=>`
+      <div class="cart-item-row">
+        <div class="cart-item-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <div class="cart-item-body">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">₹${Number(item.price).toLocaleString('en-IN')}/yr</div>
+        </div>
+        <button class="cart-remove-btn" onclick="removeFromCart(${idx})"><i class="fas fa-trash"></i> Remove</button>
+      </div>`).join('')}
+    <div class="cart-summary">
+      <div class="cart-sum-row"><span>Subtotal</span><span>₹${subtotal.toLocaleString('en-IN')}</span></div>
+      <div class="cart-sum-row"><span>GST (18%)</span><span>₹${gst.toLocaleString('en-IN')}</span></div>
+      <div class="cart-sum-row total"><span>Total Payable</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+    </div>
+    <button class="cart-checkout-btn" onclick="checkoutCart()"><i class="fas fa-lock"></i> Checkout Cart (₹${total.toLocaleString('en-IN')})</button>
+    <button onclick="clearCart()" style="width:100%;margin-top:8px;padding:10px;border-radius:50px;border:1px solid #fca5a5;background:#fff;color:#dc2626;font-size:13px;font-weight:600;cursor:pointer;transition:var(--tr)">
+      <i class="fas fa-trash"></i> Clear Cart
+    </button>
+  `;
+}
+
+function addToCart(name, price, features){
+  if(!currentUser){ openModal('authModal'); return; }
+  const cart=getCart();
+  if(cart.find(i=>i.name===name)){
+    showToast('Already in cart!','#fffbeb','#d97706'); return;
+  }
+  cart.push({name,price,features});
+  saveCart(cart);
+  updateCartBadge();
+  showToast(name+' added to cart! 🛒','#ecfdf5','#065f46');
+}
+
+function removeFromCart(idx){
+  const cart=getCart();
+  cart.splice(idx,1);
+  saveCart(cart);
+  updateCartBadge();
+  renderCartTab();
+}
+
+function clearCart(){
+  saveCart([]);
+  updateCartBadge();
+  renderCartTab();
+}
+
+function checkoutCart(){
+  const cart=getCart();
+  if(cart.length===0) return;
+  if(cart.length===1){
+    const item=cart[0];
+    pendingPackage={name:item.name,price:item.price,features:item.features||[]};
+    closeModal('dashboardModal');
+    processPurchase();
+  } else {
+    showToast('Multi-item checkout: Contact us on WhatsApp for a combined invoice.','#e8f0fb','#0B2545');
+    setTimeout(()=>whatsappSupport(),1200);
+  }
+}
+
+function renderReportsTab(){
+  const orders=getUserOrders(currentUser.email);
+  const el=document.getElementById('dashReportsList');
+  const reports=[
+    {name:'GST Return Summary',desc:'Quarterly GST filing status & summary',color:'#0B2545',icon:'fa-file-invoice-dollar',type:'gst'},
+    {name:'TDS Certificate (Form 16A)',desc:'TDS deduction certificate for the financial year',color:'#1a4b8a',icon:'fa-receipt',type:'tds'},
+    {name:'EPF Statement',desc:'Employee Provident Fund contribution statement',color:'#1a8a4a',icon:'fa-users',type:'epf'},
+    {name:'Account Ledger',desc:'Full account ledger for the current year',color:'#C9973A',icon:'fa-calculator',type:'ledger'},
+    {name:'Income Tax Summary',desc:'ITR filing summary & computation',color:'#7c3aed',icon:'fa-money-check-dollar',type:'itr'},
+    {name:'Invoice Copy',desc:'Tax invoice for your purchased package',color:'#dc2626',icon:'fa-file-invoice',type:'invoice'},
+  ];
+  if(orders.length===0){
+    el.innerHTML='<div class="dash-empty"><i class="fas fa-download"></i><p>No reports available. Purchase a package to access reports.</p></div>';
+    return;
+  }
+  el.innerHTML=reports.map(r=>`
+    <div class="report-item">
+      <div class="report-icon" style="background:${r.color}"><i class="fas ${r.icon}"></i></div>
+      <div class="report-body">
+        <div class="report-name">${r.name}</div>
+        <div class="report-desc">${r.desc}</div>
+      </div>
+      <button class="report-dl-btn" onclick="downloadReport('${r.type}','${r.name}')"><i class="fas fa-download"></i> Download</button>
+    </div>`).join('');
+}
+
+function downloadReport(type,name){
+  // In production connect to your backend/storage. For now, generates a simple PDF-like text file.
+  const orders=getUserOrders(currentUser.email);
+  const content=`SWASTIKA CONSULTANCY SERVICES\n${'='.repeat(50)}\n\nReport: ${name}\nClient: ${currentUser.name}\nEmail: ${currentUser.email}\nBusiness: ${currentUser.business||'N/A'}\nGenerated: ${new Date().toLocaleString('en-IN')}\n\n${'='.repeat(50)}\nACTIVE PACKAGES:\n${orders.map(o=>`• ${o.name} — ₹${Number(o.price).toLocaleString('en-IN')}/yr (Order: ${o.orderId})`).join('\n')}\n${'='.repeat(50)}\n\nFor detailed reports, please contact:\nEmail: info@swastikaconsultancy.com\nWhatsApp: +91 80119 48490\n\nNote: This is an auto-generated document.\nFormal reports are emailed within 24 hours.`;
+  const blob=new Blob([content],{type:'text/plain'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=name.replace(/\s+/g,'_')+'_'+currentUser.name.replace(/\s+/g,'_')+'.txt';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast(name+' downloaded!','#ecfdf5','#065f46');
+}
+
+function renderProfileTab(){
+  document.getElementById('profileAvatar').textContent=(currentUser.name||'U').charAt(0).toUpperCase();
+  document.getElementById('profileNameTag').textContent=currentUser.name||'';
+  document.getElementById('profileEmailTag').textContent=currentUser.email||'';
+  document.getElementById('profileName').value=currentUser.name||'';
+  document.getElementById('profilePhone').value=currentUser.phone||'';
+  document.getElementById('profileEmail').value=currentUser.email||'';
+  document.getElementById('profileBusiness').value=currentUser.business||'';
+  document.getElementById('profileGstin').value=currentUser.gstin||'';
+  document.getElementById('profilePan').value=currentUser.pan||'';
+  document.getElementById('profileAddress').value=currentUser.address||'';
+  document.getElementById('profileSaveMsg').style.display='none';
+}
+
+function saveProfile(){
+  const name=document.getElementById('profileName').value.trim();
+  const phone=document.getElementById('profilePhone').value.trim();
+  const business=document.getElementById('profileBusiness').value.trim();
+  const gstin=document.getElementById('profileGstin').value.trim();
+  const pan=document.getElementById('profilePan').value.trim();
+  const address=document.getElementById('profileAddress').value.trim();
+  const newPass=document.getElementById('profileNewPass').value;
+  if(!name||!phone){showToast('Name and phone are required.','#fef2f2','#b91c1c');return;}
+  const users=getUsers();
+  const idx=users.findIndex(u=>u.email===currentUser.email);
+  if(idx===-1){showToast('User not found.','#fef2f2','#b91c1c');return;}
+  users[idx]={...users[idx],name,phone,business,gstin,pan,address};
+  if(newPass){ if(newPass.length<6){showToast('Password must be at least 6 characters.','#fef2f2','#b91c1c');return;} users[idx].password=newPass; }
+  saveUsers(users);
+  currentUser={...users[idx]};
+  saveSession(currentUser);
+  updateNavForUser();
+  document.getElementById('profileSaveMsg').style.display='block';
+  document.getElementById('dashName').textContent=currentUser.name;
+  document.getElementById('dashAvatar').textContent=currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('profileAvatar').textContent=currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('profileNameTag').textContent=currentUser.name;
+  document.getElementById('profileNewPass').value='';
+  setTimeout(()=>document.getElementById('profileSaveMsg').style.display='none',3000);
+}
+
+/* ======================
+   TOAST NOTIFICATION
+====================== */
+function showToast(msg,bg,color){
+  const t=document.createElement('div');
+  t.style.cssText=`position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:${bg};color:${color};border:1px solid ${color}33;padding:12px 24px;border-radius:50px;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.15);white-space:nowrap;animation:slideUp .3s ease`;
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
 }
 
 /* ======================
@@ -1931,65 +2134,126 @@ function buildAdminPanel() {
   allOrders.sort((a,b) => new Date(b.date) - new Date(a.date));
   const totalRev = allOrders.filter(o=>o.status==='active').reduce((s,o)=>s+Number(o.price),0);
   const pending = allOrders.filter(o=>o.status==='pending').length;
+
+  // Build revenue by package
+  const pkgNames=['TDS & TCS Package','GST Package','EPF & ESIC Package','Basic Accounting Package','Standard Accounting Package','All Accounting Package'];
+  const revByPkg=pkgNames.map(pkg=>{const orders=allOrders.filter(o=>o.name===pkg);return{pkg,rev:orders.reduce((s,o)=>s+Number(o.price),0),count:orders.length};}).filter(r=>r.count>0);
+
   document.getElementById('adminContent').innerHTML = `
+    <!-- STAT CARDS (clickable) -->
     <div class="admin-stats">
-      <div class="admin-stat-card" style="background:var(--primary);color:#fff">
+      <div class="admin-stat-card" style="background:var(--primary);color:#fff" onclick="showAdminTab('clients')">
         <i class="fas fa-users"></i><strong>${users.length}</strong><span>Total Clients</span>
       </div>
-      <div class="admin-stat-card" style="background:#ecfdf5;border:1px solid #6ee7b7">
-        <i class="fas fa-shopping-bag" style="color:var(--green)"></i><strong style="color:#065f46">${allOrders.length}</strong><span>Total Orders</span>
+      <div class="admin-stat-card" style="background:#ecfdf5;border:1px solid #6ee7b7" onclick="showAdminTab('orders')">
+        <i class="fas fa-shopping-bag" style="color:var(--green)"></i><strong style="color:#065f46">${allOrders.length}</strong><span style="color:var(--gray)">Total Orders</span>
       </div>
-      <div class="admin-stat-card" style="background:#f0f7ff;border:1px solid #bfdbfe">
-        <i class="fas fa-rupee-sign" style="color:var(--accent)"></i><strong style="color:var(--accent)">&#8377;${totalRev.toLocaleString('en-IN')}</strong><span>Revenue Collected</span>
+      <div class="admin-stat-card" style="background:#f0f7ff;border:1px solid #bfdbfe" onclick="showAdminTab('revenue')">
+        <i class="fas fa-rupee-sign" style="color:var(--accent)"></i><strong style="color:var(--accent)">&#8377;${totalRev.toLocaleString('en-IN')}</strong><span style="color:var(--gray)">Revenue</span>
       </div>
-      ${pending>0?`<div class="admin-stat-card" style="background:#fffbeb;border:1px solid #fde68a"><i class="fas fa-clock" style="color:#d97706"></i><strong style="color:#d97706">${pending}</strong><span>Pending</span></div>`:''}
+      ${pending>0?`<div class="admin-stat-card" style="background:#fffbeb;border:1px solid #fde68a" onclick="showAdminTab('orders')">
+        <i class="fas fa-clock" style="color:#d97706"></i><strong style="color:#d97706">${pending}</strong><span style="color:var(--gray)">Pending</span></div>`:''}
     </div>
-    <p class="admin-section-head"><i class="fas fa-users"></i> All Registered Clients (${users.length})</p>
-    <div style="overflow-x:auto;margin-bottom:24px">
-      <table class="admin-table">
-        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Business</th><th>Packages</th><th>Joined</th></tr></thead>
-        <tbody>
-          ${users.length===0
-            ? '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--gray)">No clients registered yet</td></tr>'
-            : users.map((u,i) => {
-                const uOrders = getUserOrders(u.email);
-                return `<tr>
-                  <td>${i+1}</td>
-                  <td><strong>${u.name}</strong></td>
-                  <td><a href="mailto:${u.email}" style="color:var(--accent)">${u.email}</a></td>
-                  <td>${u.phone||'N/A'}</td>
-                  <td>${u.business||'—'}</td>
-                  <td><span style="background:var(--primary);color:#fff;padding:3px 10px;border-radius:50px;font-size:11px">${uOrders.length} pkg</span></td>
-                  <td>${new Date(u.created).toLocaleDateString('en-IN')}</td>
-                </tr>`;
-              }).join('')
-          }
-        </tbody>
-      </table>
+    <p style="font-size:12px;color:var(--gray);margin-bottom:16px;text-align:center"><i class="fas fa-info-circle"></i> Click any stat card to jump to that section</p>
+
+    <!-- ADMIN TABS -->
+    <div class="admin-tab-bar">
+      <button class="admin-tab-btn active" id="atab-clients" onclick="showAdminTab('clients')"><i class="fas fa-users"></i> Clients (${users.length})</button>
+      <button class="admin-tab-btn" id="atab-orders" onclick="showAdminTab('orders')"><i class="fas fa-receipt"></i> Orders (${allOrders.length})</button>
+      <button class="admin-tab-btn" id="atab-revenue" onclick="showAdminTab('revenue')"><i class="fas fa-chart-bar"></i> Revenue</button>
     </div>
-    <p class="admin-section-head"><i class="fas fa-receipt"></i> All Orders (${allOrders.length})</p>
-    <div style="overflow-x:auto">
-      <table class="admin-table">
-        <thead><tr><th>Order ID</th><th>Client</th><th>Package</th><th>Pkg Amt</th><th>Total (GST)</th><th>Razorpay ID</th><th>Date</th><th>Status</th></tr></thead>
-        <tbody>
-          ${allOrders.length===0
-            ? '<tr><td colspan="8" style="text-align:center;padding:20px;color:var(--gray)">No orders yet</td></tr>'
-            : allOrders.map((o,i) => `<tr>
-                <td style="font-family:monospace;font-size:11px">${o.orderId}</td>
-                <td><div style="font-weight:600;white-space:nowrap">${o.userName}</div><div style="font-size:11px;color:var(--gray)">${o.userPhone}</div></td>
-                <td style="white-space:nowrap">${o.name}</td>
-                <td style="color:var(--green);font-weight:600">&#8377;${Number(o.price).toLocaleString('en-IN')}</td>
-                <td style="font-weight:600">&#8377;${Number(o.total||o.price).toLocaleString('en-IN')}</td>
-                <td style="font-family:monospace;font-size:11px;color:var(--accent)">${o.rzpPaymentId||'—'}</td>
-                <td style="white-space:nowrap">${new Date(o.date).toLocaleDateString('en-IN')}</td>
-                <td><span style="padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;background:${o.status==='active'?'#ecfdf5':'#fffbeb'};color:${o.status==='active'?'#065f46':'#d97706'}">${o.status==='active'?'✓ Active':'⏳ Pending'}</span></td>
-              </tr>`).join('')
-          }
-        </tbody>
-      </table>
+
+    <!-- CLIENTS TAB -->
+    <div class="admin-tab-panel active" id="apanel-clients">
+      <input type="text" class="admin-search" placeholder="🔍 Search clients by name, email, phone..." oninput="filterAdminTable(this,'adminClientsTable')">
+      <div style="overflow-x:auto">
+        <table class="admin-table" id="adminClientsTable">
+          <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Business</th><th>GSTIN</th><th>Packages</th><th>Total Paid</th><th>Joined</th></tr></thead>
+          <tbody>
+            ${users.length===0
+              ? '<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--gray)">No clients registered yet</td></tr>'
+              : users.map((u,i) => {
+                  const uOrders = getUserOrders(u.email);
+                  const uTotal = uOrders.reduce((s,o)=>s+Number(o.price),0);
+                  return `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${u.name}</strong></td>
+                    <td><a href="mailto:${u.email}" style="color:var(--accent)">${u.email}</a></td>
+                    <td>${u.phone||'N/A'}</td>
+                    <td>${u.business||'—'}</td>
+                    <td style="font-size:11px;font-family:monospace">${u.gstin||'—'}</td>
+                    <td><span style="background:var(--primary);color:#fff;padding:3px 10px;border-radius:50px;font-size:11px">${uOrders.length} pkg</span></td>
+                    <td style="color:var(--green);font-weight:600">&#8377;${uTotal.toLocaleString('en-IN')}</td>
+                    <td style="white-space:nowrap;font-size:12px">${u.created?new Date(u.created).toLocaleDateString('en-IN'):'—'}</td>
+                  </tr>`;
+                }).join('')
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
-    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:20px"><i class="fas fa-database"></i> All data stored in browser localStorage. For production, connect to a backend database.</p>
+
+    <!-- ORDERS TAB -->
+    <div class="admin-tab-panel" id="apanel-orders">
+      <input type="text" class="admin-search" placeholder="🔍 Search orders by client, package, order ID..." oninput="filterAdminTable(this,'adminOrdersTable')">
+      <div style="overflow-x:auto">
+        <table class="admin-table" id="adminOrdersTable">
+          <thead><tr><th>Order ID</th><th>Client</th><th>Package</th><th>Pkg Amt</th><th>Total (GST)</th><th>Razorpay ID</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            ${allOrders.length===0
+              ? '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--gray)">No orders yet</td></tr>'
+              : allOrders.map(o => `<tr>
+                  <td style="font-family:monospace;font-size:11px">${o.orderId}</td>
+                  <td><div style="font-weight:600;white-space:nowrap">${o.userName}</div><div style="font-size:11px;color:var(--gray)">${o.userPhone}</div></td>
+                  <td style="white-space:nowrap">${o.name}</td>
+                  <td style="color:var(--green);font-weight:600">&#8377;${Number(o.price).toLocaleString('en-IN')}</td>
+                  <td style="font-weight:600">&#8377;${Number(o.total||o.price).toLocaleString('en-IN')}</td>
+                  <td style="font-family:monospace;font-size:11px;color:var(--accent)">${o.rzpPaymentId||'—'}</td>
+                  <td style="white-space:nowrap;font-size:12px">${new Date(o.date).toLocaleDateString('en-IN')}</td>
+                  <td><span style="padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;background:${o.status==='active'?'#ecfdf5':'#fffbeb'};color:${o.status==='active'?'#065f46':'#d97706'}">${o.status==='active'?'✓ Active':'⏳ Pending'}</span></td>
+                </tr>`).join('')
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REVENUE TAB -->
+    <div class="admin-tab-panel" id="apanel-revenue">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
+        ${revByPkg.map(r=>`
+          <div class="rev-card">
+            <span>${r.pkg}</span>
+            <strong>&#8377;${r.rev.toLocaleString('en-IN')}</strong>
+            <span>${r.count} order${r.count>1?'s':''}</span>
+          </div>`).join('')}
+        ${revByPkg.length===0?'<div class="rev-card" style="grid-column:1/-1"><strong>No revenue yet</strong><span>Orders will appear here</span></div>':''}
+      </div>
+      <div style="background:linear-gradient(135deg,var(--primary),#1a4b8a);border-radius:14px;padding:24px;color:#fff;text-align:center">
+        <div style="font-size:13px;opacity:.7;margin-bottom:6px">TOTAL REVENUE COLLECTED</div>
+        <div style="font-size:44px;font-weight:700;color:var(--secondary);font-family:'Playfair Display',serif">&#8377;${totalRev.toLocaleString('en-IN')}</div>
+        <div style="font-size:13px;opacity:.55;margin-top:6px">From ${allOrders.length} orders · ${users.length} clients</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:20px"><i class="fas fa-database"></i> Data stored in browser localStorage. Connect a backend database for production.</p>
   `;
+}
+
+function showAdminTab(tab){
+  document.querySelectorAll('.admin-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-panel').forEach(p=>p.classList.remove('active'));
+  const btn=document.getElementById('atab-'+tab);
+  const panel=document.getElementById('apanel-'+tab);
+  if(btn) btn.classList.add('active');
+  if(panel) panel.classList.add('active');
+}
+
+function filterAdminTable(input, tableId){
+  const q=input.value.toLowerCase();
+  document.querySelectorAll('#'+tableId+' tbody tr').forEach(row=>{
+    row.style.display=row.textContent.toLowerCase().includes(q)?'':'none';
+  });
 }
 
 /* ======================
@@ -2021,512 +2285,6 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 console.log('%cSwastika Consultancy Services','color:#C9973A;font-size:18px;font-weight:bold');
 console.log('%cAdmin: admin@swastika.com / Swastika@2026','color:#666');
 console.log('%c⚠ Replace RZP_KEY with your Razorpay key to go live!','color:#d97706;font-weight:bold');
-
-/* ======================
-   CART SYSTEM
-====================== */
-function getCart(email){ try{return JSON.parse(localStorage.getItem('scs_cart_'+email)||'[]')}catch{return[]} }
-function saveCart(email,c){ localStorage.setItem('scs_cart_'+email,JSON.stringify(c)) }
-
-function addToCart(name, price, features) {
-  if(!currentUser){ openModal('authModal'); pendingPackage={name,price,features}; return; }
-  const cart = getCart(currentUser.email);
-  if(cart.find(i=>i.name===name)){ alert(name+' is already in your cart!'); return; }
-  cart.push({name,price,features,added:new Date().toISOString()});
-  saveCart(currentUser.email,cart);
-  updateCartBadge();
-  // Show toast
-  showToast('✓ '+name+' added to cart!','#ecfdf5','#065f46');
-}
-
-function removeFromCart(name){
-  if(!currentUser)return;
-  let cart=getCart(currentUser.email).filter(i=>i.name!==name);
-  saveCart(currentUser.email,cart);
-  updateCartBadge();
-  renderCartTab();
-}
-
-function updateCartBadge(){
-  if(!currentUser)return;
-  const n=getCart(currentUser.email).length;
-  const el=document.getElementById('cartBadge');
-  if(el)el.textContent=n;
-  const dc=document.getElementById('dashCartCount');
-  if(dc)dc.textContent=n;
-}
-
-function showToast(msg,bg,color){
-  let t=document.getElementById('scsToast');
-  if(!t){t=document.createElement('div');t.id='scsToast';
-    t.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);padding:13px 24px;border-radius:50px;font-size:14px;font-weight:600;z-index:99999;transition:opacity .4s;box-shadow:0 8px 24px rgba(0,0,0,.15);white-space:nowrap';
-    document.body.appendChild(t);}
-  t.style.background=bg;t.style.color=color;t.style.opacity='1';t.textContent=msg;
-  setTimeout(()=>t.style.opacity='0',2800);
-}
-
-/* ======================
-   DASHBOARD TABS
-====================== */
-function switchDashTab(tab){
-  document.querySelectorAll('.dash-tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.dash-tab-content').forEach(c=>c.style.display='none');
-  document.getElementById('dtab-'+tab).classList.add('active');
-  document.getElementById('dashTab-'+tab).style.display='block';
-  if(tab==='orders') renderOrdersTab();
-  if(tab==='cart')   renderCartTab();
-  if(tab==='profile') renderProfileTab();
-  if(tab==='reports') renderReportsTab();
-  if(tab==='overview') renderOverviewTab();
-}
-
-function renderOverviewTab(){
-  const orders=getUserOrders(currentUser.email);
-  const cart=getCart(currentUser.email);
-  document.getElementById('dashPkgCount').textContent=orders.length;
-  const total=orders.reduce((s,o)=>s+Number(o.price),0);
-  document.getElementById('dashSpent').textContent='₹'+total.toLocaleString('en-IN');
-  document.getElementById('dashCartCount').textContent=cart.length;
-  // Activity feed
-  const acts=[];
-  orders.forEach(o=>acts.push({icon:'🛒',color:'#ecfdf5',text:'Purchased <strong>'+o.name+'</strong> — ₹'+Number(o.price).toLocaleString('en-IN'),time:o.date}));
-  cart.forEach(c=>acts.push({icon:'🛍️',color:'#fff7ed',text:'Added <strong>'+c.name+'</strong> to cart',time:c.added}));
-  const meetings=JSON.parse(localStorage.getItem('scs_meetings_'+currentUser.email)||'[]');
-  meetings.forEach(m=>acts.push({icon:'📅',color:'#f0f7ff',text:'Meeting requested: <strong>'+m.topic+'</strong> on '+m.date,time:m.booked}));
-  acts.sort((a,b)=>new Date(b.time)-new Date(a.time));
-  const el=document.getElementById('dashActivity');
-  if(acts.length===0){el.innerHTML='<div class="dash-empty"><i class="fas fa-history"></i><p>No activity yet.</p></div>';return;}
-  el.innerHTML=acts.slice(0,6).map(a=>`
-    <div class="activity-item">
-      <div class="activity-dot" style="background:${a.color}">${a.icon}</div>
-      <div><div class="activity-text">${a.text}</div><div class="activity-time">${new Date(a.time).toLocaleString('en-IN')}</div></div>
-    </div>`).join('');
-}
-
-function renderOrdersTab(){
-  const orders=getUserOrders(currentUser.email);
-  const el=document.getElementById('dashPackages');
-  if(!orders.length){
-    el.innerHTML='<div class="dash-empty"><i class="fas fa-box-open"></i><p>No packages purchased yet.</p><button class="btn-primary" onclick="closeModal('dashboardModal');window.location.href='#packages'" style="margin-top:12px;font-size:13px">Browse Packages</button></div>';
-    return;
-  }
-  el.innerHTML=orders.map(o=>`
-    <div class="dash-order-row">
-      <div class="dash-order-icon"><i class="fas fa-receipt"></i></div>
-      <div class="dash-order-info">
-        <div class="dash-order-name">${o.name}</div>
-        <div class="dash-order-meta">Order #${o.orderId} &middot; ₹${Number(o.price).toLocaleString('en-IN')}/yr &middot; ${new Date(o.date).toLocaleDateString('en-IN')} &middot; <span style="color:var(--green);font-weight:600">● Active</span></div>
-      </div>
-      <div class="dash-order-actions">
-        <button class="dash-order-dl" onclick="downloadInvoice('${o.orderId}','${o.name}','${o.price}','${o.date}')"><i class="fas fa-download"></i> Invoice</button>
-        <button class="dash-order-dl" style="background:var(--secondary)" onclick="whatsappSupportPkg('${o.name}')"><i class="fab fa-whatsapp"></i></button>
-      </div>
-    </div>`).join('');
-}
-
-function renderCartTab(){
-  const cart=getCart(currentUser.email);
-  const cartEl=document.getElementById('dashCartItems');
-  const sumEl=document.getElementById('dashCartSummary');
-  if(!cart.length){
-    cartEl.innerHTML='<div class="dash-empty"><i class="fas fa-shopping-cart"></i><p>Your cart is empty.</p><button class="btn-primary" onclick="closeModal('dashboardModal');window.location.href='#packages'" style="margin-top:12px;font-size:13px;display:inline-flex">Browse Packages</button></div>';
-    sumEl.innerHTML='';return;
-  }
-  const pkgIcons={'GST Package':'fa-file-invoice-dollar','TDS & TCS Package':'fa-receipt','EPF & ESIC Package':'fa-users','Basic Accounting Package':'fa-calculator','Standard Accounting Package':'fa-chart-line','All Accounting Package':'fa-briefcase'};
-  cartEl.innerHTML=cart.map(item=>`
-    <div class="cart-item-row">
-      <div class="cart-item-icon"><i class="fas ${pkgIcons[item.name]||'fa-box-open'}"></i></div>
-      <div class="cart-item-name">${item.name}</div>
-      <div class="cart-item-price">₹${Number(item.price).toLocaleString('en-IN')}/yr</div>
-      <button class="cart-remove-btn" onclick="removeFromCart('${item.name}')"><i class="fas fa-trash"></i> Remove</button>
-    </div>`).join('');
-  const subtotal=cart.reduce((s,i)=>s+Number(i.price),0);
-  const gst=Math.round(subtotal*.18);
-  sumEl.innerHTML=`
-    <div class="cart-summary-box">
-      <div class="cart-summary-row"><span>Subtotal (${cart.length} item${cart.length>1?'s':''})</span><span>₹${subtotal.toLocaleString('en-IN')}</span></div>
-      <div class="cart-summary-row"><span>GST (18%)</span><span>₹${gst.toLocaleString('en-IN')}</span></div>
-      <div class="cart-summary-row total"><span>Total Payable</span><span>₹${(subtotal+gst).toLocaleString('en-IN')}</span></div>
-      <button class="cart-checkout-btn" onclick="checkoutCart()"><i class="fas fa-lock"></i> Proceed to Payment (₹${(subtotal+gst).toLocaleString('en-IN')})</button>
-      <button onclick="clearEntireCart()" style="width:100%;margin-top:10px;background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:10px;border-radius:50px;cursor:pointer;font-size:13px;transition:var(--tr)">Clear Cart</button>
-    </div>`;
-}
-
-function clearEntireCart(){
-  if(!currentUser)return;
-  if(!confirm('Clear all items from cart?'))return;
-  saveCart(currentUser.email,[]);
-  updateCartBadge();
-  renderCartTab();
-}
-
-function checkoutCart(){
-  const cart=getCart(currentUser.email);
-  if(!cart.length){alert('Your cart is empty!');return;}
-  if(cart.length===1){
-    const i=cart[0];
-    pendingPackage={name:i.name,price:i.price,features:i.features||[]};
-    closeModal('dashboardModal');
-    openModal('purchaseModal');
-    processPurchase();
-    return;
-  }
-  const total=cart.reduce((s,i)=>s+Number(i.price),0);
-  const msg=encodeURIComponent('Hello Swastika Consultancy,\n\nI want to purchase multiple packages:\n'+cart.map(i=>'• '+i.name+' — ₹'+Number(i.price).toLocaleString('en-IN')+'/yr').join('\n')+'\n\nTotal: ₹'+total.toLocaleString('en-IN')+'/yr\nPlease assist with payment.');
-  window.open('https://wa.me/+918011948490?text='+msg,'_blank');
-}
-
-function renderProfileTab(){
-  if(!currentUser)return;
-  const saved=JSON.parse(localStorage.getItem('scs_profile_'+currentUser.email)||'{}');
-  document.getElementById('profileName').value=currentUser.name||'';
-  document.getElementById('profilePhone').value=currentUser.phone||'';
-  document.getElementById('profileBiz').value=currentUser.business||saved.business||'';
-  document.getElementById('profileGST').value=saved.gst||'';
-  document.getElementById('profilePAN').value=saved.pan||'';
-  document.getElementById('profileAddr').value=saved.address||'';
-}
-
-function saveProfile(){
-  if(!currentUser)return;
-  const name=document.getElementById('profileName').value.trim();
-  const phone=document.getElementById('profilePhone').value.trim();
-  const biz=document.getElementById('profileBiz').value.trim();
-  const gst=document.getElementById('profileGST').value.trim();
-  const pan=document.getElementById('profilePAN').value.trim();
-  const addr=document.getElementById('profileAddr').value.trim();
-  // Update session
-  currentUser.name=name||currentUser.name;
-  currentUser.phone=phone||currentUser.phone;
-  currentUser.business=biz;
-  saveSession(currentUser);
-  // Update in users array
-  const users=getUsers();
-  const idx=users.findIndex(u=>u.email===currentUser.email);
-  if(idx>-1){users[idx]={...users[idx],name:currentUser.name,phone:currentUser.phone,business:biz};saveUsers(users);}
-  // Save extra profile data
-  localStorage.setItem('scs_profile_'+currentUser.email,JSON.stringify({gst,pan,address:addr,business:biz}));
-  updateNavForUser();
-  document.getElementById('dashName').textContent=currentUser.name;
-  document.getElementById('dashAvatar').textContent=currentUser.name.charAt(0).toUpperCase();
-  document.getElementById('dashBiz').textContent=biz||'';
-  const msg=document.getElementById('profileSaveMsg');
-  msg.style.display='block';
-  setTimeout(()=>msg.style.display='none',3000);
-}
-
-function renderReportsTab(){
-  const orders=getUserOrders(currentUser.email);
-  const el=document.getElementById('dashReportsList');
-  const saved=JSON.parse(localStorage.getItem('scs_profile_'+currentUser.email)||'{}');
-  const reports=[
-    {icon:'fa-file-invoice',color:'#e8f0fb',icolor:'#1a4b8a',name:'Service Agreement',desc:'Download your signed service agreement (PDF)',action:()=>generateServiceAgreement()},
-    {icon:'fa-file-invoice-dollar',color:'#f0fdf4',icolor:'#065f46',name:'Tax Invoice / Receipt',desc:'Official GST tax invoice for your package purchase',action:()=>downloadAllReports()},
-    {icon:'fa-chart-bar',color:'#fff7ed',icolor:'#c2410c',name:'Account Statement',desc:'Summary of all your purchased packages',action:()=>downloadAccountStatement()},
-    {icon:'fa-shield-halved',color:'#fdf4e3',icolor:'#92400e',name:'Compliance Calendar',desc:'Important GST/TDS due dates for this year',action:()=>downloadComplianceCalendar()},
-  ];
-  if(!orders.length){
-    el.innerHTML='<div class="dash-empty"><i class="fas fa-download"></i><p>Purchase a package to unlock reports and documents.</p></div>';
-    return;
-  }
-  el.innerHTML='<p style="font-size:13px;color:var(--gray);margin-bottom:16px">Click any report below to download or generate it.</p>'+
-  reports.map(r=>`
-    <div class="report-item" onclick="${r.action.toString().replace(/
-/g,'').replace(/"/g,'\"')}()" style="cursor:pointer">
-      <div class="report-icon" style="background:${r.color};color:${r.icolor}"><i class="fas ${r.icon}"></i></div>
-      <div class="report-info">
-        <div class="report-name">${r.name}</div>
-        <div class="report-desc">${r.desc}</div>
-      </div>
-      <button class="report-dl-btn"><i class="fas fa-download"></i> Download</button>
-    </div>`).join('');
-}
-
-/* ======================
-   DOWNLOAD FUNCTIONS
-====================== */
-function downloadInvoice(orderId,pkgName,price,date){
-  const profile=JSON.parse(localStorage.getItem('scs_profile_'+currentUser.email)||'{}');
-  const gst=Math.round(Number(price)*.18);
-  const total=Number(price)+gst;
-  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ${orderId}</title>
-  <style>body{font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:40px;color:#333}
-  .header{background:#0B2545;color:#fff;padding:30px;border-radius:12px;margin-bottom:30px;display:flex;justify-content:space-between;align-items:center}
-  .logo{font-size:28px;font-weight:700;color:#C9973A}.sub{font-size:13px;opacity:.7;margin-top:4px}
-  .inv-title{font-size:24px;font-weight:700}.inv-id{font-size:14px;opacity:.8;margin-top:4px}
-  table{width:100%;border-collapse:collapse;margin:20px 0}th{background:#0B2545;color:#fff;padding:12px;text-align:left}
-  td{padding:12px;border-bottom:1px solid #eee}.total-row{font-weight:700;font-size:16px;background:#f9f9f9}
-  .footer{margin-top:30px;padding:20px;background:#f5f5f5;border-radius:8px;font-size:13px;color:#666;text-align:center}
-  .badge{display:inline-block;background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;padding:6px 16px;border-radius:50px;font-weight:700;margin-top:16px}
-  @media print{button{display:none}}</style></head><body>
-  <div class="header">
-    <div><div class="logo">Swastika Consultancy</div><div class="sub">132-A, Ganesh Nagar-II, East Delhi, Delhi 110092</div><div class="sub">📞 +91 80119 48490 | 📧 info@swastikaconsultancyservices.com</div></div>
-    <div style="text-align:right"><div class="inv-title">TAX INVOICE</div><div class="inv-id">#${orderId}</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
-    <div><strong style="color:#0B2545">Bill To:</strong><br>${currentUser.name}<br>${currentUser.email}<br>${currentUser.phone||''}<br>${profile.business||currentUser.business||''}<br>${profile.address||''}</div>
-    <div style="text-align:right"><strong style="color:#0B2545">Invoice Date:</strong><br>${new Date(date).toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'})}<br><br><strong style="color:#0B2545">Due:</strong><br>Paid</div>
-  </div>
-  <table><thead><tr><th>Description</th><th>HSN/SAC</th><th>Period</th><th>Amount</th></tr></thead>
-  <tbody>
-    <tr><td>${pkgName}</td><td>998311</td><td>Annual (1 Year)</td><td>₹${Number(price).toLocaleString('en-IN')}</td></tr>
-    <tr><td>CGST @ 9%</td><td></td><td></td><td>₹${Math.round(Number(price)*.09).toLocaleString('en-IN')}</td></tr>
-    <tr><td>SGST @ 9%</td><td></td><td></td><td>₹${Math.round(Number(price)*.09).toLocaleString('en-IN')}</td></tr>
-    <tr class="total-row"><td colspan="3"><strong>Total Amount Payable</strong></td><td><strong style="color:#0B2545">₹${total.toLocaleString('en-IN')}</strong></td></tr>
-  </tbody></table>
-  <div class="badge">✓ PAYMENT RECEIVED — Order ID: ${orderId}</div>
-  <div class="footer">Thank you for choosing Swastika Consultancy Services!<br>For support: +91 80119 48490 | info@swastikaconsultancyservices.com<br><small>This is a computer-generated invoice and does not require a signature.</small></div>
-  <script>window.onload=()=>window.print()<\/script></body></html>`;
-  const w=window.open('','_blank');w.document.write(doc);w.document.close();
-}
-
-function downloadAllReports(){
-  const orders=getUserOrders(currentUser.email);
-  if(!orders.length){alert('No purchases found. Please buy a package first.');return;}
-  orders.forEach((o,i)=>setTimeout(()=>downloadInvoice(o.orderId,o.name,o.price,o.date),i*600));
-}
-
-function downloadAccountStatement(){
-  const orders=getUserOrders(currentUser.email);
-  const profile=JSON.parse(localStorage.getItem('scs_profile_'+currentUser.email)||'{}');
-  const total=orders.reduce((s,o)=>s+Number(o.price),0);
-  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Account Statement</title>
-  <style>body{font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:40px}
-  .header{background:#0B2545;color:#fff;padding:24px;border-radius:10px;margin-bottom:24px}
-  table{width:100%;border-collapse:collapse}th{background:#0B2545;color:#fff;padding:10px}td{padding:10px;border-bottom:1px solid #eee}
-  .total{font-weight:700;background:#f9f9f9}@media print{button{display:none}}</style></head><body>
-  <div class="header"><h2 style="margin:0;color:#C9973A">Account Statement</h2><p style="margin:4px 0 0;opacity:.7">Swastika Consultancy Services — ${currentUser.name}</p></div>
-  <p><strong>Client:</strong> ${currentUser.name} | ${currentUser.email} | ${currentUser.phone||'N/A'}<br><strong>Business:</strong> ${profile.business||currentUser.business||'—'}<br><strong>Generated:</strong> ${new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'})}</p>
-  <table><thead><tr><th>#</th><th>Order ID</th><th>Package</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
-  <tbody>${orders.map((o,i)=>`<tr><td>${i+1}</td><td style="font-family:monospace;font-size:12px">${o.orderId}</td><td>${o.name}</td><td>${new Date(o.date).toLocaleDateString('en-IN')}</td><td>₹${Number(o.price).toLocaleString('en-IN')}</td><td style="color:#065f46;font-weight:600">✓ Active</td></tr>`).join('')}
-  <tr class="total"><td colspan="4"><strong>Total Paid (excl. GST)</strong></td><td><strong>₹${total.toLocaleString('en-IN')}</strong></td><td></td></tr>
-  </tbody></table>
-  <script>window.onload=()=>window.print()<\/script></body></html>`;
-  const w=window.open('','_blank');w.document.write(doc);w.document.close();
-}
-
-function downloadComplianceCalendar(){
-  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Compliance Calendar</title>
-  <style>body{font-family:Arial,sans-serif;max-width:760px;margin:0 auto;padding:40px}
-  .header{background:#0B2545;color:#fff;padding:24px;border-radius:10px;margin-bottom:24px}
-  table{width:100%;border-collapse:collapse;margin-top:16px}th{background:#0B2545;color:#fff;padding:10px;text-align:left}
-  td{padding:10px;border-bottom:1px solid #eee}.urgent{color:#dc2626;font-weight:700}
-  h3{color:#0B2545;border-bottom:2px solid #C9973A;padding-bottom:8px;margin-top:28px}
-  @media print{button{display:none}}</style></head><body>
-  <div class="header"><h2 style="margin:0;color:#C9973A">Compliance Calendar ${new Date().getFullYear()}</h2><p style="opacity:.7;margin:4px 0 0">Swastika Consultancy Services — Key Due Dates</p></div>
-  <h3>GST Due Dates</h3>
-  <table><tr><th>Return</th><th>Due Date</th><th>Description</th></tr>
-  <tr><td>GSTR-1</td><td>11th of every month</td><td>Outward supplies details</td></tr>
-  <tr><td>GSTR-3B</td><td>20th of every month</td><td>Monthly summary return + payment</td></tr>
-  <tr><td>GSTR-9</td><td>31st December</td><td>Annual return</td></tr>
-  </table>
-  <h3>TDS / TCS Due Dates</h3>
-  <table><tr><th>Quarter</th><th>Period</th><th>Due Date</th></tr>
-  <tr><td>Q1</td><td>Apr–Jun</td><td>31st July</td></tr>
-  <tr><td>Q2</td><td>Jul–Sep</td><td>31st October</td></tr>
-  <tr><td>Q3</td><td>Oct–Dec</td><td>31st January</td></tr>
-  <tr><td>Q4</td><td>Jan–Mar</td><td>31st May</td></tr>
-  </table>
-  <h3>EPF & ESIC</h3>
-  <table><tr><th>Type</th><th>Due Date</th></tr>
-  <tr><td>EPF Payment</td><td>15th of every month</td></tr>
-  <tr><td>ESIC Payment</td><td>15th of every month</td></tr>
-  </table>
-  <p style="margin-top:24px;font-size:13px;color:#666">For queries: +91 80119 48490 | info@swastikaconsultancyservices.com</p>
-  <script>window.onload=()=>window.print()<\/script></body></html>`;
-  const w=window.open('','_blank');w.document.write(doc);w.document.close();
-}
-
-function generateServiceAgreement(){
-  const profile=JSON.parse(localStorage.getItem('scs_profile_'+currentUser.email)||'{}');
-  const orders=getUserOrders(currentUser.email);
-  const doc=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Service Agreement</title>
-  <style>body{font-family:Arial,sans-serif;max-width:700px;margin:0 auto;padding:40px;line-height:1.8}
-  .header{background:#0B2545;color:#fff;padding:24px;border-radius:10px;margin-bottom:28px;text-align:center}
-  h2{color:#C9973A;margin:0}.sub{opacity:.7;font-size:13px;margin-top:4px}
-  h3{color:#0B2545;margin-top:24px}p{color:#444;font-size:14px}
-  .sig-block{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
-  .sig-line{border-top:1px solid #333;padding-top:8px;font-size:13px;color:#666}
-  @media print{button{display:none}}</style></head><body>
-  <div class="header"><h2>Service Agreement</h2><div class="sub">Swastika Consultancy Services · Ref: SCS-${Date.now().toString().slice(-6)}</div></div>
-  <p>This Service Agreement is entered into as of <strong>${new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'})}</strong> between:</p>
-  <p><strong>Service Provider:</strong> Swastika Consultancy Services, 132-A, Ganesh Nagar-II, East Delhi, Delhi 110092, India.</p>
-  <p><strong>Client:</strong> ${currentUser.name}, ${currentUser.email}, ${currentUser.phone||'N/A'}${profile.business?', '+profile.business:''}.</p>
-  <h3>1. Services</h3><p>The Service Provider agrees to provide the following services as per the selected package(s): ${orders.map(o=>o.name).join(', ')||'As per package selected'}.</p>
-  <h3>2. Payment Terms</h3><p>Fees are payable annually in advance. GST @ 18% is applicable on all services.</p>
-  <h3>3. Confidentiality</h3><p>Both parties agree to maintain strict confidentiality of all financial and business data shared during the engagement.</p>
-  <h3>4. Term</h3><p>This agreement is valid for 12 months from the date of payment and may be renewed upon mutual agreement.</p>
-  <div class="sig-block">
-    <div><div class="sig-line">Client Signature<br>${currentUser.name}</div></div>
-    <div><div class="sig-line">Authorized Signatory<br>Swastika Consultancy Services</div></div>
-  </div>
-  <script>window.onload=()=>window.print()<\/script></body></html>`;
-  const w=window.open('','_blank');w.document.write(doc);w.document.close();
-}
-
-function whatsappSupportPkg(pkgName){
-  const msg=encodeURIComponent('Hi, I need support for my '+pkgName+'. Client: '+currentUser.name+' ('+currentUser.email+')');
-  window.open('https://wa.me/+918011948490?text='+msg,'_blank');
-}
-
-/* ======================
-   ENHANCED openDashboard
-====================== */
-const _origOpenDashboard = openDashboard;
-openDashboard = function(){
-  if(!currentUser)return;
-  document.getElementById('dashName').textContent=currentUser.name;
-  document.getElementById('dashEmail').textContent=currentUser.email;
-  document.getElementById('dashAvatar').textContent=currentUser.name.charAt(0).toUpperCase();
-  const biz=document.getElementById('dashBiz');
-  if(biz)biz.textContent=currentUser.business||'';
-  updateCartBadge();
-  switchDashTab('overview');
-  openModal('dashboardModal');
-};
-
-/* ======================
-   ENHANCED ADMIN PANEL - Clickable Stats
-====================== */
-const _origBuildAdmin = buildAdminPanel;
-buildAdminPanel = function(){
-  const users=getUsers();
-  const allOrders=[];
-  users.forEach(u=>{
-    getUserOrders(u.email).forEach(o=>allOrders.push({...o,userName:u.name,userPhone:u.phone||'N/A',userEmail:u.email,userBiz:u.business||'—'}));
-  });
-  allOrders.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const totalRev=allOrders.filter(o=>o.status==='active').reduce((s,o)=>s+Number(o.price),0);
-
-  document.getElementById('adminContent').innerHTML=`
-    <div class="admin-tab-bar">
-      <button class="admin-tab active" onclick="showAdminSection('clients')"><i class="fas fa-users"></i> Clients (${users.length})</button>
-      <button class="admin-tab" onclick="showAdminSection('orders')"><i class="fas fa-shopping-bag"></i> Orders (${allOrders.length})</button>
-      <button class="admin-tab" onclick="showAdminSection('revenue')"><i class="fas fa-rupee-sign"></i> Revenue</button>
-    </div>
-    <div class="admin-stats">
-      <div class="admin-stat-card admin-clickable-stat" style="background:var(--primary);color:#fff" onclick="showAdminSection('clients')">
-        <i class="fas fa-users" style="color:var(--secondary)"></i><strong>${users.length}</strong><span>Total Clients</span>
-      </div>
-      <div class="admin-stat-card admin-clickable-stat" style="background:#ecfdf5;border:1px solid #6ee7b7" onclick="showAdminSection('orders')">
-        <i class="fas fa-shopping-bag" style="color:var(--green)"></i><strong style="color:#065f46">${allOrders.length}</strong><span>Total Orders</span>
-      </div>
-      <div class="admin-stat-card admin-clickable-stat" style="background:#f0f7ff;border:1px solid #bfdbfe" onclick="showAdminSection('revenue')">
-        <i class="fas fa-rupee-sign" style="color:var(--accent)"></i><strong style="color:var(--accent)">₹${totalRev.toLocaleString('en-IN')}</strong><span>Revenue</span>
-      </div>
-      <div class="admin-stat-card" style="background:#fdf4e3;border:1px solid #e8d8b0">
-        <i class="fas fa-calendar-check" style="color:var(--secondary)"></i><strong style="color:var(--secondary)">${allOrders.filter(o=>new Date(o.date)>new Date(Date.now()-30*86400000)).length}</strong><span>This Month</span>
-      </div>
-    </div>
-
-    <!-- CLIENTS SECTION -->
-    <div id="adminSec-clients" class="admin-detail-panel show">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <p class="admin-section-head" style="margin:0"><i class="fas fa-users"></i> All Registered Clients</p>
-        <input type="text" placeholder="🔍 Search clients..." oninput="filterAdminTable(this,'adminClientsTable')" style="padding:8px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none;width:220px">
-      </div>
-      <div style="overflow-x:auto">
-        <table class="admin-table" id="adminClientsTable">
-          <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Business</th><th>Packages</th><th>Joined</th><th>Action</th></tr></thead>
-          <tbody>
-            ${users.length===0?'<tr><td colspan="8" style="text-align:center;padding:20px;color:var(--gray)">No clients registered yet</td></tr>':
-              users.map((u,i)=>{
-                const uOrders=JSON.parse(localStorage.getItem('scs_orders_'+u.email)||'[]');
-                return `<tr>
-                  <td>${i+1}</td>
-                  <td><strong>${u.name}</strong></td>
-                  <td><a href="mailto:${u.email}" style="color:var(--accent)">${u.email}</a></td>
-                  <td>${u.phone||'N/A'}</td>
-                  <td>${u.business||'—'}</td>
-                  <td><span style="background:var(--primary);color:#fff;padding:3px 10px;border-radius:50px;font-size:11px">${uOrders.length} pkg</span></td>
-                  <td>${new Date(u.created).toLocaleDateString('en-IN')}</td>
-                  <td><a href="https://wa.me/${(u.phone||'').replace(/\D/g,'')}" target="_blank" style="background:var(--green);color:#fff;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600">WhatsApp</a></td>
-                </tr>`;}).join('')
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ORDERS SECTION -->
-    <div id="adminSec-orders" class="admin-detail-panel">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <p class="admin-section-head" style="margin:0"><i class="fas fa-receipt"></i> All Orders</p>
-        <input type="text" placeholder="🔍 Search orders..." oninput="filterAdminTable(this,'adminOrdersTable')" style="padding:8px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none;width:220px">
-      </div>
-      <div style="overflow-x:auto">
-        <table class="admin-table" id="adminOrdersTable">
-          <thead><tr><th>Order ID</th><th>Client</th><th>Package</th><th>Price</th><th>Total+GST</th><th>Razorpay ID</th><th>Date</th><th>Status</th></tr></thead>
-          <tbody>
-            ${allOrders.length===0?'<tr><td colspan="8" style="text-align:center;padding:20px;color:var(--gray)">No orders yet</td></tr>':
-              allOrders.map(o=>`<tr>
-                <td style="font-family:monospace;font-size:11px">${o.orderId}</td>
-                <td><div style="font-weight:600;white-space:nowrap">${o.userName}</div><div style="font-size:11px;color:var(--gray)">${o.userPhone}</div></td>
-                <td style="white-space:nowrap">${o.name}</td>
-                <td style="color:var(--green);font-weight:600">₹${Number(o.price).toLocaleString('en-IN')}</td>
-                <td style="font-weight:600">₹${Number(o.total||o.price).toLocaleString('en-IN')}</td>
-                <td style="font-family:monospace;font-size:11px;color:var(--accent)">${o.rzpPaymentId||'—'}</td>
-                <td style="white-space:nowrap">${new Date(o.date).toLocaleDateString('en-IN')}</td>
-                <td><span style="padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;background:${o.status==='active'?'#ecfdf5':'#fffbeb'};color:${o.status==='active'?'#065f46':'#d97706'}">${o.status==='active'?'✓ Active':'⏳ Pending'}</span></td>
-              </tr>`).join('')
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- REVENUE SECTION -->
-    <div id="adminSec-revenue" class="admin-detail-panel">
-      <p class="admin-section-head"><i class="fas fa-chart-bar"></i> Revenue Summary</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
-        ${['TDS & TCS Package','GST Package','EPF & ESIC Package','Basic Accounting Package','Standard Accounting Package','All Accounting Package'].map(pkg=>{
-          const pkgOrders=allOrders.filter(o=>o.name===pkg);
-          const rev=pkgOrders.reduce((s,o)=>s+Number(o.price),0);
-          return pkgOrders.length?`<div style="background:var(--light);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center"><div style="font-size:12px;color:var(--gray);margin-bottom:6px">${pkg}</div><div style="font-size:20px;font-weight:700;color:var(--primary);font-family:'Playfair Display',serif">₹${rev.toLocaleString('en-IN')}</div><div style="font-size:11px;color:var(--gray);margin-top:4px">${pkgOrders.length} order${pkgOrders.length>1?'s':''}</div></div>`:'';
-        }).join('')}
-      </div>
-      <div style="background:linear-gradient(135deg,var(--primary),#1a4b8a);border-radius:14px;padding:24px;color:#fff;text-align:center">
-        <div style="font-size:13px;opacity:.7;margin-bottom:8px">TOTAL REVENUE COLLECTED</div>
-        <div style="font-size:44px;font-weight:700;color:var(--secondary);font-family:'Playfair Display',serif">₹${totalRev.toLocaleString('en-IN')}</div>
-        <div style="font-size:13px;opacity:.6;margin-top:6px">From ${allOrders.length} orders · ${users.length} clients</div>
-      </div>
-    </div>
-    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:20px"><i class="fas fa-database"></i> Data stored in browser localStorage. For production, connect Firebase or a backend database.</p>
-  `;
-};
-
-window.showAdminSection=function(sec){
-  document.querySelectorAll('.admin-detail-panel').forEach(p=>p.classList.remove('show'));
-  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('adminSec-'+sec).classList.add('show');
-  document.querySelectorAll('.admin-tab').forEach(t=>{if(t.textContent.toLowerCase().includes(sec.slice(0,5)))t.classList.add('active');});
-};
-
-window.filterAdminTable=function(input,tableId){
-  const q=input.value.toLowerCase();
-  document.querySelectorAll('#'+tableId+' tbody tr').forEach(row=>{
-    row.style.display=row.textContent.toLowerCase().includes(q)?'':'none';
-  });
-};
-
-/* ======================
-   OVERRIDE pkg-buy-btn to use addToCart
-====================== */
-// Add to cart button support - packages now have both Buy Now and Add to Cart
-document.querySelectorAll('.pkg-buy-btn').forEach(btn=>{
-  const card=btn.closest('.package-card');
-  if(!card)return;
-  const name=card.querySelector('.package-name')?.textContent||'Package';
-  const priceEl=card.querySelector('.price-amount');
-  const price=priceEl?priceEl.textContent.replace(/,/g,''):'0';
-  // Insert Add to Cart button after Buy Now
-  const atcBtn=document.createElement('button');
-  atcBtn.className='pkg-buy-btn';
-  atcBtn.style.cssText='margin-top:10px;border:2px solid var(--secondary);background:transparent;color:var(--secondary)';
-  atcBtn.innerHTML='<i class="fas fa-cart-plus"></i> Add to Cart';
-  atcBtn.onclick=()=>addToCart(name+' Package',price,[]);
-  btn.insertAdjacentElement('afterend',atcBtn);
-});
 
 </script>
 
@@ -2599,4 +2357,3 @@ document.querySelectorAll('.pkg-buy-btn').forEach(btn=>{
 
 </body>
 </html>
-
