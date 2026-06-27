@@ -78,8 +78,8 @@ button{font-family:inherit;cursor:pointer}
 ============================================================ */
 header{width:100%;position:fixed;top:0;left:0;background:#fff;z-index:998;box-shadow:0 2px 20px rgba(0,0,0,.06);transition:var(--tr)}
 .navbar{padding:16px 0}
-.navbar .container{display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:10px}
+.navbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .logo-icon{width:42px;height:42px;border-radius:10px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--secondary)}
 .logo-text h2{color:var(--primary);font-size:20px;font-family:'Playfair Display',serif;line-height:1}
 .logo-text span{font-size:11px;color:var(--gray);letter-spacing:.5px}
@@ -88,11 +88,26 @@ header{width:100%;position:fixed;top:0;left:0;background:#fff;z-index:998;box-sh
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--secondary);transition:var(--tr)}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 .nav-links a:hover,.nav-links a.active{color:var(--secondary)}
-.nav-buttons{display:flex;gap:12px;align-items:center}
-.login-btn{color:var(--primary);font-weight:600;font-size:14px;padding:10px 22px;border:2px solid var(--primary);border-radius:50px;transition:var(--tr)}
-.login-btn:hover{background:var(--primary);color:#fff}
-.consult-btn{background:var(--secondary);color:#fff;padding:10px 22px;border-radius:50px;font-weight:600;font-size:14px;transition:var(--tr)}
+.nav-buttons{display:flex;gap:10px;align-items:center;flex-shrink:0}
+/* Login button — always visible, always styled */
+.login-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--primary)!important;font-weight:600;font-size:14px;
+  padding:9px 22px;border:2px solid var(--primary);border-radius:50px;
+  transition:var(--tr);background:#fff!important;white-space:nowrap;
+  text-decoration:none;
+}
+.login-btn:hover{background:var(--primary)!important;color:#fff!important}
+/* When logged in — override to filled primary */
+.login-btn.logged-in{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important}
+.login-btn.logged-in:hover{background:var(--accent)!important;border-color:var(--accent)!important}
+.consult-btn{display:inline-flex;align-items:center;background:var(--secondary);color:#fff!important;padding:9px 20px;border-radius:50px;font-weight:600;font-size:14px;transition:var(--tr);white-space:nowrap}
 .consult-btn:hover{background:var(--primary)}
+/* Nav cart button */
+.nav-cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:2px solid var(--border);background:#fff;color:var(--primary);font-size:16px;cursor:pointer;transition:var(--tr);text-decoration:none}
+.nav-cart-btn:hover{border-color:var(--secondary);color:var(--secondary)}
+.nav-cart-count{position:absolute;top:-4px;right:-4px;background:#dc2626;color:#fff;font-size:9px;font-weight:700;border-radius:50%;width:16px;height:16px;display:none;align-items:center;justify-content:center;line-height:1}
+.nav-cart-count.visible{display:flex}
 .menu-toggle{display:none;font-size:26px;cursor:pointer;color:var(--primary)}
 .nav-links.open{display:flex}
 
@@ -180,29 +195,36 @@ header{width:100%;position:fixed;top:0;left:0;background:#fff;z-index:998;box-sh
 .package-card:hover{transform:translateY(-8px);border-color:var(--secondary);box-shadow:0 24px 60px rgba(0,0,0,.12)}
 .package-card.popular{border-color:var(--secondary);background:linear-gradient(145deg,#fff 80%,#fdf9f0)}
 .package-card.featured{border-color:var(--primary);background:var(--primary)}
-.package-card.featured *{color:#fff!important}
+/* Removed the blanket `* {color:#fff!important}` — it broke button colors.
+   Instead, colour each element explicitly below. */
+.package-card.featured .package-name{color:rgba(255,255,255,.6)!important}
+.package-card.featured .price-symbol,
+.package-card.featured .price-amount{color:#fff!important}
+.package-card.featured .price-period{color:rgba(255,255,255,.6)!important}
+.package-card.featured .package-desc{color:rgba(255,255,255,.65)!important;border-color:rgba(255,255,255,.15)!important}
+.package-card.featured .package-features li{color:rgba(255,255,255,.85)!important;border-color:rgba(255,255,255,.1)!important}
+.package-card.featured .package-features li i{color:#7dffb2!important}
 .package-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--secondary);color:#fff;font-size:12px;font-weight:700;padding:6px 20px;border-radius:50px;letter-spacing:.5px;white-space:nowrap}
-.package-card.featured .package-badge{background:#fff;color:var(--primary)}
+.package-card.featured .package-badge{background:#fff;color:var(--primary)!important}
 .package-icon{width:56px;height:56px;border-radius:14px;background:rgba(11,37,69,.07);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--secondary);margin-bottom:20px}
-.package-card.featured .package-icon{background:rgba(255,255,255,.12);color:var(--secondary)}
+.package-card.featured .package-icon{background:rgba(255,255,255,.12);color:var(--secondary)!important}
 .package-name{font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
-.package-card.featured .package-name{color:rgba(255,255,255,.6)}
 .package-price{display:flex;align-items:flex-end;gap:4px;margin-bottom:4px}
 .price-symbol{font-size:22px;color:var(--primary);font-weight:600;padding-bottom:6px}
 .price-amount{font-family:'Playfair Display',serif;font-size:52px;color:var(--primary);line-height:1}
-.package-card.featured .price-symbol,.package-card.featured .price-amount{color:#fff}
 .price-period{font-size:13px;color:var(--gray);padding-bottom:8px}
 .package-desc{font-size:13px;color:var(--gray);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
-.package-card.featured .package-desc{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.15)}
 .package-features{flex:1;margin-bottom:28px}
 .package-features li{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:13px;color:var(--dark);border-bottom:1px solid rgba(0,0,0,.04)}
-.package-card.featured .package-features li{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.1)}
 .package-features li i{color:var(--green);font-size:14px;flex-shrink:0}
-.package-card.featured .package-features li i{color:#7dffb2}
+/* Buy Now button */
 .pkg-buy-btn{width:100%;padding:14px;border-radius:50px;font-weight:600;font-size:15px;transition:var(--tr);border:2px solid var(--secondary);background:transparent;color:var(--secondary)}
 .pkg-buy-btn:hover,.package-card.popular .pkg-buy-btn{background:var(--secondary);color:#fff}
-.package-card.featured .pkg-buy-btn{border-color:#fff;background:#fff;color:var(--primary)}
-.package-card.featured .pkg-buy-btn:hover{background:var(--secondary);border-color:var(--secondary);color:#fff}
+.package-card.featured .pkg-buy-btn{border-color:#fff!important;background:#fff!important;color:var(--primary)!important}
+.package-card.featured .pkg-buy-btn:hover{background:var(--secondary)!important;border-color:var(--secondary)!important;color:#fff!important}
+/* Add to Cart button inside featured card */
+.package-card.featured .pkg-buy-btn+.pkg-buy-btn{background:transparent!important;border-color:rgba(255,255,255,.6)!important;color:#fff!important}
+.package-card.featured .pkg-buy-btn+.pkg-buy-btn:hover{background:rgba(255,255,255,.15)!important;border-color:#fff!important;color:#fff!important}
 .packages-note{text-align:center;background:#fffbf0;border:1px solid #f0e0b0;border-radius:14px;padding:20px 28px;max-width:700px;margin:0 auto;font-size:14px;color:var(--dark)}
 .packages-note a{color:var(--secondary);font-weight:600}
 
@@ -596,6 +618,10 @@ input[type="date"].meet-input{cursor:pointer}
           <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="nav-buttons" id="navButtons">
+          <a href="#" class="nav-cart-btn" id="navCartBtn" onclick="event.preventDefault();if(currentUser){openDashboard();setTimeout(()=>switchDashTab('cart'),300)}else{openModal('authModal')}" title="My Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="nav-cart-count" id="navCartCount">0</span>
+          </a>
           <a href="#" class="login-btn" id="navLoginBtn">Login</a>
           <a href="#contact" class="consult-btn">Free Consultation</a>
         </div>
@@ -878,13 +904,13 @@ input[type="date"].meet-input{cursor:pointer}
       <!-- Standard Accounting -->
       <div class="package-card featured reveal" data-pkg="standard-accounting" data-price="18000" data-name="Standard Accounting Package">
         <span class="package-badge">🏆 Best Value</span>
-        <div class="package-icon"><i class="fas fa-briefcase"></i></div>
+        <div class="package-icon"><i class="fas fa-chart-line"></i></div>
         <p class="package-name">Standard Accounting</p>
         <div class="package-price">
           <span class="price-symbol">₹</span>
           <span class="price-amount">18,000</span>
         </div>
-        <p style="font-size:13px;color:var(--gray);margin-bottom:16px">Per Year</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px">Per Year</p>
         <p class="package-desc">Complete accounting with GST, TDS and ITR filing for growing businesses.</p>
         <ul class="package-features">
           <li><i class="fas fa-check-circle"></i> Complete Accounting &amp; Bookkeeping</li>
@@ -898,7 +924,7 @@ input[type="date"].meet-input{cursor:pointer}
         <button class="pkg-buy-btn" onclick="openPurchase('Standard Accounting Package','18000',['Complete Accounting','GST Monthly Filing','TDS Quarterly Return','ITR Filing','MIS Reports','Quarterly Review','Priority Support'])">
           <i class="fas fa-shopping-cart"></i> Buy Now — ₹18,000/yr
         </button>
-        <button class="pkg-buy-btn" style="margin-top:10px;background:transparent;border-color:var(--secondary);color:var(--secondary)" onclick="addToCart('Standard Accounting Package','18000',['Complete Accounting','GST Monthly Filing','TDS Quarterly Return','ITR Filing','MIS Reports','Quarterly Review','Priority Support'])">
+        <button class="pkg-buy-btn" style="margin-top:10px;" onclick="addToCart('Standard Accounting Package','18000',['Complete Accounting','GST Monthly Filing','TDS Quarterly Return','ITR Filing','MIS Reports','Quarterly Review','Priority Support'])">
           <i class="fas fa-cart-plus"></i> Add to Cart
         </button>
       </div>
@@ -1580,10 +1606,24 @@ function doRegister(){
 function updateNavForUser(){
   const btn=document.getElementById('navLoginBtn');
   if(currentUser){
-    btn.innerHTML='<i class="fas fa-user-circle"></i> '+currentUser.name.split(' ')[0];
-    btn.style.background='var(--primary)';btn.style.color='#fff';btn.style.borderColor='var(--primary)';
+    const first=(currentUser.name||currentUser.email).split(' ')[0];
+    btn.innerHTML='<i class="fas fa-user-circle"></i> '+first;
+    btn.classList.add('logged-in');
+    btn.style.cssText='';          // clear any leftover inline styles
   } else {
-    btn.innerHTML='Login';btn.style.background='';btn.style.color='';btn.style.borderColor='';
+    btn.innerHTML='<i class="fas fa-right-to-bracket"></i> Login';
+    btn.classList.remove('logged-in');
+    btn.style.cssText='';
+  }
+  updateNavCart();
+}
+
+function updateNavCart(){
+  const cart = currentUser ? getCart() : [];
+  const badge = document.getElementById('navCartCount');
+  if(badge){
+    badge.textContent = cart.length;
+    badge.classList.toggle('visible', cart.length > 0);
   }
 }
 
@@ -1614,6 +1654,7 @@ function updateCartBadge(){
   const count=document.getElementById('dashCartCount');
   if(badge){badge.textContent=cart.length;badge.style.display=cart.length?'inline-flex':'none';}
   if(count) count.firstChild.textContent=cart.length+' ';
+  updateNavCart();
 }
 
 /* ======================
