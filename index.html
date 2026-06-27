@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
 /* ============================================================
@@ -137,7 +138,7 @@ header{width:100%;position:fixed;top:0;left:0;background:#fff;z-index:998;box-sh
 .about-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .about-img-wrap{border-radius:20px}
 .about-visual-card{background:linear-gradient(145deg,#0B2545,#1a4b8a);border-radius:20px;padding:40px 32px;text-align:center;box-shadow:0 24px 60px rgba(11,37,69,.22)}
-.avc-coin{width:88px;height:88px;border-radius:50%;background:rgba(201,151,58,.18);border:3px solid rgba(201,151,58,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:44px;color:#C9973A;font-weight:700;font-family:'Playfair Display',serif;line-height:88px;text-align:center}
+.avc-coin{width:88px;height:88px;border-radius:50%;background:rgba(201,151,58,.18);border:3px solid rgba(201,151,58,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:42px;color:#C9973A;font-weight:700;font-family:'Playfair Display',serif}
 .avc-name{color:#fff;font-family:'Playfair Display',serif;font-size:19px;margin-bottom:6px}
 .avc-sub{color:rgba(255,255,255,.5);font-size:13px;margin-bottom:24px}
 .avc-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px}
@@ -447,13 +448,14 @@ footer{background:var(--primary);color:#fff;padding:80px 0 24px}
   .testimonial-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
-  .nav-menu{display:none;flex-direction:column;background:#fff;position:absolute;top:100%;left:0;right:0;padding:16px 20px 20px;box-shadow:0 10px 30px rgba(0,0,0,.1);border-top:2px solid var(--secondary)}
+  .nav-menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 12px 32px rgba(0,0,0,.12);border-top:3px solid var(--secondary);z-index:999;padding:0}
   .nav-menu.open{display:flex}
-  .nav-links{flex-direction:column;gap:0}
-  .nav-links a{padding:12px 0;border-bottom:1px solid var(--border);font-size:15px}
+  .nav-links{flex-direction:column;gap:0;padding:8px 20px 0}
+  .nav-links li{border-bottom:1px solid var(--border)}
+  .nav-links a{padding:14px 0;display:block;font-size:15px}
   .nav-links a::after{display:none}
-  .nav-buttons{flex-direction:row;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
-  .nav-buttons .login-btn,.nav-buttons .consult-btn{flex:1;text-align:center}
+  .nav-buttons{flex-direction:row;gap:10px;padding:16px 20px;background:var(--light)}
+  .nav-buttons .login-btn,.nav-buttons .consult-btn{flex:1;text-align:center;display:block}
   .menu-toggle{display:block}
   .dashboard-modal .modal-box{max-width:100%}
   .dash-stats{grid-template-columns:1fr 1fr}
@@ -463,13 +465,46 @@ footer{background:var(--primary);color:#fff;padding:80px 0 24px}
   .modal-header{padding:20px 20px 0}
 }
 
-/* Meeting date input min */
-input[type="date"]{width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:var(--tr);background:#fff}
-input[type="date"]:focus{border-color:var(--secondary)}
-/* Admin modal wide */
-#adminModal .modal-box{max-width:960px}
-/* Mobile admin table scroll */
-@media(max-width:768px){#adminContent table{min-width:600px}}
+/* ============================================================
+   RAZORPAY PAYMENT BOX
+============================================================ */
+.rzp-payment-box{padding:4px 0}
+.rzp-info-row{display:flex;gap:10px;margin-bottom:20px}
+.rzp-info-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--light);border-radius:10px;padding:12px 8px;font-size:12px;font-weight:500;color:var(--primary);text-align:center}
+.rzp-info-item i{font-size:20px;color:var(--secondary)}
+.rzp-methods-label{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:10px}
+.rzp-methods-label i{color:var(--secondary);margin-right:6px}
+.rzp-methods-icons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.rzp-method-tag{background:var(--light);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:500;color:var(--primary);display:inline-flex;align-items:center;gap:6px}
+.rzp-method-tag i{color:var(--secondary)}
+.rzp-note{text-align:center;font-size:11px;color:var(--gray);margin-top:12px}
+/* ============================================================
+   ADMIN PANEL
+============================================================ */
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.admin-stat-card{border-radius:12px;padding:16px;text-align:center}
+.admin-stat-card i{font-size:22px;margin-bottom:8px;display:block}
+.admin-stat-card strong{display:block;font-size:24px;font-family:'Playfair Display',serif;line-height:1}
+.admin-stat-card span{font-size:11px;opacity:.7;margin-top:4px;display:block}
+.admin-section-head{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:2px solid var(--border)}
+.admin-section-head i{color:var(--secondary)}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;min-width:700px}
+.admin-table thead tr{background:var(--primary);color:#fff}
+.admin-table th{padding:10px 12px;text-align:left;font-weight:500;font-size:12px;white-space:nowrap}
+.admin-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.admin-table tbody tr:nth-child(even){background:var(--light)}
+.admin-table tbody tr:hover{background:rgba(201,151,58,.06)}
+/* ============================================================
+   MEETING MODAL INPUTS
+============================================================ */
+.meet-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:var(--tr);background:#fff;color:var(--dark)}
+.meet-input:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(201,151,58,.1)}
+input[type="date"].meet-input{cursor:pointer}
+@media(max-width:768px){
+  .admin-stats{grid-template-columns:1fr 1fr}
+  .rzp-info-row{gap:6px}
+  .rzp-info-item{font-size:11px;padding:10px 6px}
+}
 
 </style>
 </head>
@@ -580,32 +615,27 @@ input[type="date"]:focus{border-color:var(--secondary)}
     </div>
     <div class="about-content">
       <div class="about-img-wrap reveal">
-        <svg viewBox="0 0 540 400" xmlns="http://www.w3.org/2000/svg" style="border-radius:20px;display:block">
-          <defs>
-            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#0B2545"/>
-              <stop offset="100%" stop-color="#1a4b8a"/>
-            </linearGradient>
-          </defs>
-          <rect width="540" height="400" fill="url(#bg)"/>
-          <circle cx="270" cy="130" r="70" fill="rgba(201,151,58,.15)"/>
-          <circle cx="270" cy="130" r="50" fill="rgba(201,151,58,.25)"/>
-          <text x="270" y="148" text-anchor="middle" font-size="50" fill="#C9973A" font-family="serif">₹</text>
-          <rect x="80" y="240" width="380" height="60" rx="12" fill="rgba(255,255,255,.07)"/>
-          <text x="270" y="268" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.9)" font-family="Inter,sans-serif" font-weight="600">SWASTIKA CONSULTANCY SERVICES</text>
-          <text x="270" y="288" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif">Professional Tax &amp; Accounting Solutions</text>
-          <rect x="60" y="318" width="120" height="36" rx="8" fill="rgba(201,151,58,.2)"/>
-          <text x="120" y="341" text-anchor="middle" font-size="11" fill="#C9973A" font-family="Inter,sans-serif" font-weight="600">GST Filing</text>
-          <rect x="210" y="318" width="120" height="36" rx="8" fill="rgba(201,151,58,.2)"/>
-          <text x="270" y="341" text-anchor="middle" font-size="11" fill="#C9973A" font-family="Inter,sans-serif" font-weight="600">TDS &amp; TCS</text>
-          <rect x="360" y="318" width="120" height="36" rx="8" fill="rgba(201,151,58,.2)"/>
-          <text x="420" y="341" text-anchor="middle" font-size="11" fill="#C9973A" font-family="Inter,sans-serif" font-weight="600">Accounting</text>
-          <text x="270" y="388" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">Est. 2021 · Ganesh Nagar,Delhi</text>
-        </svg>
-        
+        <div class="about-visual-card">
+          <div class="avc-coin">&#8377;</div>
+          <h3 class="avc-name">Swastika Consultancy Services</h3>
+          <p class="avc-sub">Professional Tax &amp; Accounting Solutions</p>
+          <div class="avc-tags">
+            <span><i class="fas fa-file-invoice-dollar"></i> GST Filing</span>
+            <span><i class="fas fa-receipt"></i> TDS &amp; TCS</span>
+            <span><i class="fas fa-calculator"></i> Accounting</span>
+            <span><i class="fas fa-users"></i> EPF &amp; ESIC</span>
+          </div>
+          <div class="avc-stats">
+            <div class="avc-stat"><strong>250+</strong><span>Happy Clients</span></div>
+            <div class="avc-divider"></div>
+            <div class="avc-stat"><strong>6+</strong><span>Years Practice</span></div>
+            <div class="avc-divider"></div>
+            <div class="avc-stat"><strong>100%</strong><span>Satisfaction</span></div>
+          </div>
+          <p class="avc-footer"><i class="fas fa-map-marker-alt"></i> Est. 2021 &middot; Ganesh Nagar, Delhi</p>
         </div>
       </div>
-      <div class="about-text reveal">
+            <div class="about-text reveal">
         <h3>Helping Businesses Grow with Confidence</h3>
         <p>We provide complete accounting and compliance solutions so business owners can focus on growing their business while we handle all statutory requirements on time.</p>
         <p>From small traders to mid-size companies, we serve clients across multiple industries with personalised attention and transparent yearly pricing.</p>
@@ -994,7 +1024,7 @@ input[type="date"]:focus{border-color:var(--secondary)}
         </div>
         <div class="info-box">
           <div class="info-box-icon"><i class="fab fa-whatsapp"></i></div>
-          <div><h4>WhatsApp</h4><a href="https://wa.me/918011948490" target="_blank">+91 80119 48490</a><p>Available 9:00 AM – 7:00 PM</p></div>
+          <div><h4>WhatsApp</h4><a href="https://wa.me/+918011948490" target="_blank">+91 80119 48490</a><p>Available 9:00 AM – 7:00 PM</p></div>
         </div>
         <div class="info-box">
           <div class="info-box-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -1064,7 +1094,7 @@ input[type="date"]:focus{border-color:var(--secondary)}
           <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
           <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://wa.me/918011948490" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://wa.me/+918011948490" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1105,14 +1135,14 @@ input[type="date"]:focus{border-color:var(--secondary)}
       <div class="footer-badges">
         <span class="badge"><i class="fas fa-shield-halved"></i> Secure &amp; Trusted</span>
         <span class="badge"><i class="fas fa-lock"></i> 100% Confidential</span>
-        <span class="badge" onclick="openAdminPanel()" style="cursor:pointer;opacity:.4;font-size:10px"><i class="fas fa-user-shield"></i> Admin</span>
+        <span class="badge" onclick="openAdminPanel()" style="cursor:pointer;opacity:.35" title="Admin Login"><i class="fas fa-user-shield"></i> Admin</span>
       </div>
     </div>
   </div>
 </footer>
 
 <!-- FLOATING ELEMENTS -->
-<a href="https://wa.me/918011948490" class="whatsapp-float" target="_blank" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/+918011948490" class="whatsapp-float" target="_blank" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 <button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
 <!-- ============================================================
@@ -1252,10 +1282,6 @@ function saveUserOrders(email,orders){ localStorage.setItem('scs_orders_'+email,
    PRELOADER
 ====================== */
 window.addEventListener('load',()=>{
-  // Set meeting date minimum to today
-  const today=new Date().toISOString().split('T')[0];
-  const mdate=document.getElementById('meetDate');
-  if(mdate) mdate.min=today;
   setTimeout(()=>{
     const p=document.getElementById('preloader');
     p.style.opacity='0';
@@ -1280,18 +1306,7 @@ window.addEventListener('scroll',()=>{
 /* ======================
    NAVBAR
 ====================== */
-document.getElementById('menuToggle').addEventListener('click',()=>{
-  const menu = document.getElementById('navMenu');
-  const icon = document.querySelector('#menuToggle i');
-  menu.classList.toggle('open');
-  icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-});
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.getElementById('navMenu').classList.remove('open');
-    document.querySelector('#menuToggle i').className='fas fa-bars';
-  });
-});
+/* mobile nav toggle moved to bottom of script */
 
 /* Active link on scroll */
 const sections=document.querySelectorAll('section[id]');
@@ -1457,390 +1472,429 @@ function openDashboard(){
 }
 
 /* ======================
-   PURCHASE FLOW
+   RAZORPAY CONFIG
+   !! REPLACE WITH YOUR REAL KEYS !!
 ====================== */
-let currentPayMethod = 'upi';
+const RZP_KEY = 'rzp_test_REPLACE_YOUR_KEY_HERE';
+// Get your key from: https://dashboard.razorpay.com/app/keys
+// Use rzp_test_xxx for testing, rzp_live_xxx for live payments
 
-function openPurchase(name,price,features){
-  pendingPackage={name,price,features};
-  if(!currentUser){ openModal('authModal'); return; }
+/* ======================
+   PURCHASE FLOW - Razorpay
+====================== */
+let currentPayMethod = 'razorpay';
+
+function openPurchase(name, price, features) {
+  pendingPackage = { name, price, features };
+  if (!currentUser) { openModal('authModal'); return; }
   processPurchase();
 }
 
-function processPurchase(){
-  if(!pendingPackage)return;
-  currentPayMethod='upi';
-  const {name,price,features}=pendingPackage;
-  const priceNum=Number(price);
-  const gst=Math.round(priceNum*0.18);
-  const total=priceNum+gst;
-  document.getElementById('purchaseContent').innerHTML=`
+function processPurchase() {
+  if (!pendingPackage) return;
+  const { name, price, features } = pendingPackage;
+  const priceNum = Number(price);
+  const gst = Math.round(priceNum * 0.18);
+  const total = priceNum + gst;
+
+  document.getElementById('purchaseContent').innerHTML = `
     <div class="purchase-pkg-info">
       <h3>${name}</h3>
-      <div class="pkg-price-tag">&#8377;${priceNum.toLocaleString('en-IN')} <span>/ year</span></div>
+      <div class="pkg-price-tag">&#8377;${priceNum.toLocaleString('en-IN')} <span>/ year (+ 18% GST)</span></div>
       <div class="purchase-features-mini">${features.slice(0,4).map(f=>`<span>${f}</span>`).join('')}</div>
     </div>
-    <div class="payment-section">
-      <h4>Choose Payment Method</h4>
-      <div class="payment-methods">
-        <div class="pay-method selected" id="pm-upi" onclick="selectPayMethod('upi')"><i class="fas fa-mobile-screen-button"></i>UPI</div>
-        <div class="pay-method" id="pm-netbank" onclick="selectPayMethod('netbank')"><i class="fas fa-university"></i>Net Banking</div>
-        <div class="pay-method" id="pm-card" onclick="selectPayMethod('card')"><i class="fas fa-credit-card"></i>Card</div>
-      </div>
-      <div id="pm-details">
-        <div class="upi-input-wrap">
-          <label>UPI ID <span style="color:#dc2626">*</span></label>
-          <input type="text" id="upiId" placeholder="yourname@upi or 9999999999@paytm">
-        </div>
-      </div>
-      <div id="pay-error-wrap" style="display:none;margin-bottom:12px">
-        <p id="pay-error-msg" style="color:#b91c1c;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;font-size:13px;margin:0;text-align:center"></p>
+    <div class="rzp-payment-box">
+      <div class="rzp-info-row">
+        <div class="rzp-info-item"><i class="fas fa-shield-halved"></i><span>100% Secure</span></div>
+        <div class="rzp-info-item"><i class="fas fa-bolt"></i><span>Instant Activation</span></div>
+        <div class="rzp-info-item"><i class="fas fa-headset"></i><span>24hr Support</span></div>
       </div>
       <div class="purchase-total">
         <div class="total-row"><span>Package Price</span><span>&#8377;${priceNum.toLocaleString('en-IN')}</span></div>
         <div class="total-row"><span>GST (18%)</span><span>&#8377;${gst.toLocaleString('en-IN')}</span></div>
         <div class="total-row final"><span>Total Payable</span><span>&#8377;${total.toLocaleString('en-IN')}</span></div>
       </div>
-      <button class="pay-now-btn" id="payNowBtn" onclick="confirmPurchase('${name}','${price}','${total}')">
-        <i class="fas fa-lock"></i> Pay &#8377;${total.toLocaleString('en-IN')} Securely
+      <div class="rzp-methods-label"><i class="fas fa-credit-card"></i> Pay securely using:</div>
+      <div class="rzp-methods-icons">
+        <span class="rzp-method-tag"><i class="fas fa-mobile-screen-button"></i> UPI</span>
+        <span class="rzp-method-tag"><i class="fas fa-credit-card"></i> Cards</span>
+        <span class="rzp-method-tag"><i class="fas fa-university"></i> Net Banking</span>
+        <span class="rzp-method-tag"><i class="fas fa-wallet"></i> Wallets</span>
+      </div>
+      <button class="pay-now-btn" id="rzpPayBtn" onclick="launchRazorpay('${name}','${price}','${total}')">
+        <i class="fas fa-lock"></i>&nbsp; Pay &#8377;${total.toLocaleString('en-IN')} via Razorpay
       </button>
-      <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:12px">
-        <i class="fas fa-shield-halved" style="color:var(--green)"></i> Fill in your payment details above before clicking Pay
+      <p class="rzp-note">
+        <img src="https://razorpay.com/favicon.ico" width="14" style="vertical-align:middle;margin-right:4px">
+        Powered by <strong>Razorpay</strong> &mdash; PCI DSS compliant, SSL encrypted
       </p>
     </div>
   `;
   openModal('purchaseModal');
 }
 
-function selectPayMethod(method){
-  currentPayMethod=method;
-  document.querySelectorAll('.pay-method').forEach(el=>el.classList.remove('selected'));
-  document.getElementById('pm-'+method).classList.add('selected');
-  document.getElementById('pay-error-wrap').style.display='none';
-  const d=document.getElementById('pm-details');
-  if(method==='upi'){
-    d.innerHTML=`<div class="upi-input-wrap"><label>UPI ID <span style="color:#dc2626">*</span></label><input type="text" id="upiId" placeholder="yourname@upi or 9876543210@paytm"></div>`;
-  } else if(method==='netbank'){
-    d.innerHTML=`
-      <div class="upi-input-wrap"><label>Select Bank <span style="color:#dc2626">*</span></label>
-        <select id="nbBank" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;outline:none;font-family:inherit;background:#fff">
-          <option value="">-- Select your bank --</option>
-          <option>State Bank of India</option><option>HDFC Bank</option><option>ICICI Bank</option>
-          <option>Axis Bank</option><option>Punjab National Bank</option><option>Kotak Mahindra Bank</option>
-          <option>Bank of Baroda</option><option>Canara Bank</option><option>Other</option>
-        </select>
-      </div>
-      <div class="upi-input-wrap" style="margin-top:12px"><label>Net Banking User ID <span style="color:#dc2626">*</span></label><input type="text" id="nbUserId" placeholder="Enter your net banking User ID"></div>
-      <div class="upi-input-wrap" style="margin-top:12px"><label>Password <span style="color:#dc2626">*</span></label><input type="password" id="nbPass" placeholder="Enter your net banking password"></div>`;
-  } else {
-    d.innerHTML=`
-      <div class="upi-input-wrap"><label>Card Number <span style="color:#dc2626">*</span></label><input type="text" id="cardNum" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" oninput="let v=this.value.replace(/\D/g,'').substring(0,16);this.value=v.replace(/(.{4})/g,'$1 ').trim()"></div>
-      <div class="upi-input-wrap" style="margin-top:12px"><label>Name on Card <span style="color:#dc2626">*</span></label><input type="text" id="cardName" placeholder="Full name as on card"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-        <div class="upi-input-wrap" style="margin:0"><label>Expiry <span style="color:#dc2626">*</span></label><input type="text" id="cardExp" placeholder="MM/YY" maxlength="5" oninput="let v=this.value.replace(/\D/g,'');if(v.length>=2)v=v.substring(0,2)+'/'+v.substring(2,4);this.value=v"></div>
-        <div class="upi-input-wrap" style="margin:0"><label>CVV <span style="color:#dc2626">*</span></label><input type="password" id="cardCvv" placeholder="3 digits" maxlength="3"></div>
-      </div>`;
+function launchRazorpay(name, price, total) {
+  const priceNum = Number(price);
+  const totalNum = Number(total);
+
+  // Check if Razorpay script loaded
+  if (typeof Razorpay === 'undefined') {
+    showRzpError('Razorpay could not load. Check your internet connection and try again.');
+    return;
+  }
+
+  // Check if key is configured
+  if (RZP_KEY.includes('REPLACE')) {
+    showRzpError('⚙️ Razorpay is not configured yet. Please add your Razorpay Key ID to go live. Contact the website developer.');
+    return;
+  }
+
+  const btn = document.getElementById('rzpPayBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening Payment Gateway...';
+
+  const options = {
+    key: RZP_KEY,
+    amount: totalNum * 100,          // Amount in paise (1 INR = 100 paise)
+    currency: 'INR',
+    name: 'Swastika Consultancy Services',
+    description: name,
+    image: 'https://i.ibb.co/0G0G0G0/logo.png',  // Optional: your logo URL
+    prefill: {
+      name: currentUser.name,
+      email: currentUser.email,
+      contact: currentUser.phone || ''
+    },
+    notes: {
+      package_name: name,
+      client_email: currentUser.email,
+      client_name: currentUser.name
+    },
+    theme: { color: '#0B2545' },
+    modal: {
+      ondismiss: function() {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i>&nbsp; Pay &#8377;' + totalNum.toLocaleString('en-IN') + ' via Razorpay';
+        showRzpError('Payment was cancelled. Click Pay again to retry.');
+      }
+    },
+    handler: function(response) {
+      // ✅ PAYMENT SUCCESS - called by Razorpay ONLY after real payment
+      onPaymentSuccess(name, price, total, response);
+    }
+  };
+
+  try {
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function(response) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-lock"></i>&nbsp; Pay &#8377;' + totalNum.toLocaleString('en-IN') + ' via Razorpay';
+      showRzpError('Payment failed: ' + (response.error.description || 'Unknown error') + '. Please try again.');
+    });
+    rzp.open();
+  } catch(e) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-lock"></i>&nbsp; Pay &#8377;' + totalNum.toLocaleString('en-IN') + ' via Razorpay';
+    showRzpError('Could not open payment window. Please try again.');
   }
 }
 
-function showPayError(msg){
-  document.getElementById('pay-error-wrap').style.display='block';
-  document.getElementById('pay-error-msg').textContent='⚠ '+msg;
+function showRzpError(msg) {
+  let el = document.getElementById('rzp-error');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'rzp-error';
+    el.style.cssText = 'background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:12px 16px;font-size:13px;color:#b91c1c;margin-bottom:14px;text-align:center';
+    const btn = document.getElementById('rzpPayBtn');
+    if(btn) btn.insertAdjacentElement('beforebegin', el);
+  }
+  el.textContent = msg;
 }
 
-function confirmPurchase(name,price,total){
-  // --- VALIDATE based on selected method ---
-  if(currentPayMethod==='upi'){
-    const upi=(document.getElementById('upiId')||{value:''}).value.trim();
-    if(!upi){showPayError('Please enter your UPI ID.');return;}
-    if(!/^[\w.\-+]{2,}@[\w]{2,}$/.test(upi)){showPayError('Invalid UPI ID. Format: name@upi or 9999999999@paytm');return;}
-  } else if(currentPayMethod==='netbank'){
-    const bank=(document.getElementById('nbBank')||{value:''}).value;
-    const uid=(document.getElementById('nbUserId')||{value:''}).value.trim();
-    const pwd=(document.getElementById('nbPass')||{value:''}).value;
-    if(!bank){showPayError('Please select your bank.');return;}
-    if(!uid){showPayError('Please enter your Net Banking User ID.');return;}
-    if(!pwd){showPayError('Please enter your Net Banking password.');return;}
-  } else {
-    const num=(document.getElementById('cardNum')||{value:''}).value.replace(/\s/g,'');
-    const cname=(document.getElementById('cardName')||{value:''}).value.trim();
-    const exp=(document.getElementById('cardExp')||{value:''}).value;
-    const cvv=(document.getElementById('cardCvv')||{value:''}).value;
-    if(num.length<16){showPayError('Enter a valid 16-digit card number.');return;}
-    if(!cname){showPayError('Enter name as on card.');return;}
-    if(exp.length<5){showPayError('Enter a valid expiry date (MM/YY).');return;}
-    if(cvv.length<3){showPayError('Enter a valid 3-digit CVV.');return;}
-  }
+function onPaymentSuccess(name, price, total, rzpResponse) {
+  // Save order ONLY after Razorpay confirms payment
+  const orderId = 'SCS' + Date.now().toString().slice(-8);
+  const order = {
+    name,
+    price,
+    total,
+    orderId,
+    rzpPaymentId: rzpResponse.razorpay_payment_id,
+    rzpOrderId: rzpResponse.razorpay_order_id || '',
+    rzpSignature: rzpResponse.razorpay_signature || '',
+    date: new Date().toISOString(),
+    status: 'active',
+    payMethod: 'Razorpay'
+  };
+  const orders = getUserOrders(currentUser.email);
+  orders.push(order);
+  saveUserOrders(currentUser.email, orders);
 
-  // --- Show processing spinner ---
-  const btn=document.getElementById('payNowBtn');
-  btn.disabled=true;
-  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
+  // Notify admin via WhatsApp
+  const adminMsg = encodeURIComponent(
+    `*NEW PAYMENT RECEIVED - Swastika Consultancy*\n\n` +
+    `Client: ${currentUser.name}\nEmail: ${currentUser.email}\nPhone: ${currentUser.phone||'N/A'}\n` +
+    `Package: ${name}\nAmount: Rs.${total}\nOrder ID: ${orderId}\n` +
+    `Razorpay Payment ID: ${rzpResponse.razorpay_payment_id}\n` +
+    `Date: ${new Date().toLocaleString('en-IN')}`
+  );
+  // Open WhatsApp notification (non-blocking)
+  setTimeout(() => {
+    window.open('https://wa.me/+918011948490?text=' + adminMsg, '_blank');
+  }, 2000);
 
-  // Simulate short processing delay (real gateway would redirect here)
-  setTimeout(()=>{
-    const orderId='SCS'+Date.now().toString().slice(-8);
-    const order={name,price,total,orderId,date:new Date().toISOString(),status:'pending',payMethod:currentPayMethod};
-    const orders=getUserOrders(currentUser.email);
-    orders.push(order);
-    saveUserOrders(currentUser.email,orders);
-
-    // --- Notify admin via WhatsApp ---
-    const adminMsg=`NEW PURCHASE ALERT%0A%0AClient: ${encodeURIComponent(currentUser.name)}%0AEmail: ${encodeURIComponent(currentUser.email)}%0APhone: ${encodeURIComponent(currentUser.phone||'N/A')}%0APackage: ${encodeURIComponent(name)}%0AAmount: Rs.${total}%0AOrder ID: ${orderId}%0AMethod: ${encodeURIComponent(currentPayMethod.toUpperCase())}%0ADate: ${encodeURIComponent(new Date().toLocaleString('en-IN'))}`;
-    window.open('https://wa.me/919999999999?text='+adminMsg,'_blank');
-
-    document.getElementById('purchaseContent').innerHTML=`
-      <div class="success-screen">
-        <div class="success-icon"><i class="fas fa-check"></i></div>
-        <h2>Order Placed Successfully!</h2>
-        <p>Your <strong>${name}</strong> request has been received.</p>
-        <p style="color:#d97706;font-size:13px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px;margin:8px 0">
-          <i class="fas fa-info-circle"></i> <strong>Status: Pending Verification.</strong> Our team will confirm your payment and activate your package within 24 hours.
-        </p>
-        <div class="order-id">Order ID: ${orderId}</div>
-        <p style="font-size:12px;color:var(--gray)">Screenshot this Order ID for your reference.</p>
-        <div class="success-actions">
-          <button class="btn-primary" onclick="closeModal('purchaseModal');openDashboard()"><i class="fas fa-th-large"></i> View Dashboard</button>
-          <a href="https://wa.me/919999999999?text=Hi%2C+I+have+placed+order+${orderId}+for+${encodeURIComponent(name)}+worth+Rs.${total}.+Please+confirm." target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> Confirm on WhatsApp</a>
+  // Show success screen
+  document.getElementById('purchaseContent').innerHTML = `
+    <div class="success-screen">
+      <div class="success-icon"><i class="fas fa-check-double"></i></div>
+      <h2>Payment Successful!</h2>
+      <p>Your <strong>${name}</strong> is now <span style="color:var(--green);font-weight:600">Active</span>.</p>
+      <div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:12px;padding:16px;margin:16px 0;text-align:left">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px">
+          <span style="color:var(--gray)">Order ID</span><strong style="font-family:monospace">${orderId}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px">
+          <span style="color:var(--gray)">Payment ID</span><strong style="font-family:monospace;font-size:12px">${rzpResponse.razorpay_payment_id}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px">
+          <span style="color:var(--gray)">Amount Paid</span><strong style="color:var(--green)">&#8377;${Number(total).toLocaleString('en-IN')}</strong>
         </div>
       </div>
-    `;
-    pendingPackage=null;
-  },2000);
+      <p style="font-size:13px;color:var(--gray)">Our team will contact you within 24 hours to begin onboarding. Screenshot this page for your records.</p>
+      <div class="success-actions" style="margin-top:20px">
+        <button class="btn-primary" onclick="closeModal('purchaseModal');openDashboard()"><i class="fas fa-th-large"></i> View Dashboard</button>
+        <a href="https://wa.me/+918011948490?text=Hi%2C+I+just+paid+for+${encodeURIComponent(name)}+%28Payment+ID%3A+${rzpResponse.razorpay_payment_id}%29" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  `;
+  pendingPackage = null;
 }
 
 /* ======================
-   CONTACT FORM - sends via WhatsApp + opens email
+   CONTACT FORM - sends via WhatsApp + mailto
 ====================== */
-function submitContact(){
-  const name=document.getElementById('cName').value.trim();
-  const phone=document.getElementById('cPhone').value.trim();
-  const email=document.getElementById('cEmail').value.trim();
-  const biz=document.getElementById('cBusiness').value.trim();
-  const service=document.getElementById('cService').value;
-  const pkg=document.getElementById('cPackage').value;
-  const msg=document.getElementById('cMessage').value.trim();
-  if(!name||!phone){alert('Please enter your name and mobile number.');return;}
-  if(phone.replace(/\D/g,'').length<10){alert('Please enter a valid 10-digit mobile number.');return;}
+function submitContact() {
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const biz = document.getElementById('cBusiness').value.trim();
+  const service = document.getElementById('cService').value;
+  const pkg = document.getElementById('cPackage').value;
+  const msg = document.getElementById('cMessage').value.trim();
+  if (!name || !phone) { alert('Please enter your name and mobile number.'); return; }
+  if (phone.replace(/\D/g,'').length < 10) { alert('Please enter a valid 10-digit mobile number.'); return; }
 
-  // Build WhatsApp message
-  let waMsg=`*New Enquiry - Swastika Consultancy Website*%0A%0A`;
-  waMsg+=`*Name:* ${encodeURIComponent(name)}%0A`;
-  waMsg+=`*Phone:* ${encodeURIComponent(phone)}%0A`;
-  if(email) waMsg+=`*Email:* ${encodeURIComponent(email)}%0A`;
-  if(biz) waMsg+=`*Business:* ${encodeURIComponent(biz)}%0A`;
-  if(service) waMsg+=`*Service:* ${encodeURIComponent(service)}%0A`;
-  if(pkg) waMsg+=`*Package:* ${encodeURIComponent(pkg)}%0A`;
-  if(msg) waMsg+=`*Message:* ${encodeURIComponent(msg)}%0A`;
-  waMsg+=`*Date:* ${encodeURIComponent(new Date().toLocaleString('en-IN'))}`;
+  const waMsg = encodeURIComponent(
+    `*New Enquiry - Swastika Consultancy Website*\n\n` +
+    `Name: ${name}\nPhone: ${phone}` +
+    (email ? `\nEmail: ${email}` : '') +
+    (biz ? `\nBusiness: ${biz}` : '') +
+    (service ? `\nService: ${service}` : '') +
+    (pkg ? `\nPackage: ${pkg}` : '') +
+    (msg ? `\nMessage: ${msg}` : '') +
+    `\nDate: ${new Date().toLocaleString('en-IN')}`
+  );
+  window.open('https://wa.me/+918011948490?text=' + waMsg, '_blank');
 
-  // Open WhatsApp with message
-  window.open('https://wa.me/919999999999?text='+waMsg,'_blank');
+  const mailBody = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nBusiness: ${biz}\nService: ${service}\nPackage: ${pkg}\nMessage: ${msg}`);
+  window.location.href = `mailto:info@swastikaconsultancy.com?subject=New Enquiry from ${name}&body=${mailBody}`;
 
-  // Also open email client as backup
-  const emailBody=`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nBusiness: ${biz}\nService: ${service}\nPackage: ${pkg}\nMessage: ${msg}`;
-  window.location.href=`mailto:info@swastikaconsultancy.in?subject=New Enquiry from ${name}&body=${encodeURIComponent(emailBody)}`;
-
+  document.getElementById('contactSuccess').innerHTML = '<i class="fas fa-check-circle"></i> Message sent! We will contact you within 24 hours via WhatsApp.';
   document.getElementById('contactSuccess').classList.add('show');
-  ['cName','cPhone','cEmail','cBusiness','cMessage'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('cService').selectedIndex=0;
-  document.getElementById('cPackage').selectedIndex=0;
-  setTimeout(()=>document.getElementById('contactSuccess').classList.remove('show'),8000);
+  ['cName','cPhone','cEmail','cBusiness','cMessage'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cService').selectedIndex = 0;
+  document.getElementById('cPackage').selectedIndex = 0;
+  setTimeout(() => document.getElementById('contactSuccess').classList.remove('show'), 8000);
 }
 
 /* ======================
    SCHEDULE MEETING MODAL
 ====================== */
-function openMeetingModal(){
-  if(!currentUser){openModal('authModal');return;}
+function openMeetingModal() {
+  if (!currentUser) { openModal('authModal'); return; }
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('meetDate').min = today;
   openModal('meetingModal');
 }
 
-function submitMeeting(){
-  const date=document.getElementById('meetDate').value;
-  const time=document.getElementById('meetTime').value;
-  const topic=document.getElementById('meetTopic').value.trim();
-  const notes=document.getElementById('meetNotes').value.trim();
-  if(!date||!time||!topic){alert('Please fill Date, Time and Meeting Topic.');return;}
-  const selectedDate=new Date(date);
-  const today=new Date(); today.setHours(0,0,0,0);
-  if(selectedDate<today){alert('Please select a future date.');return;}
-
-  const btn=document.getElementById('meetSubmitBtn');
-  btn.disabled=true; btn.textContent='Scheduling...';
-
-  // WhatsApp notification to admin
-  const waMsg=`*MEETING REQUEST - Swastika Consultancy*%0A%0A*Client:* ${encodeURIComponent(currentUser.name)}%0A*Email:* ${encodeURIComponent(currentUser.email)}%0A*Phone:* ${encodeURIComponent(currentUser.phone||'N/A')}%0A*Date:* ${encodeURIComponent(date)}%0A*Time:* ${encodeURIComponent(time)}%0A*Topic:* ${encodeURIComponent(topic)}%0A*Notes:* ${encodeURIComponent(notes||'None')}`;
-  window.open('https://wa.me/919999999999?text='+waMsg,'_blank');
-
-  // Email to admin
-  const emailBody=`Meeting Request\n\nClient: ${currentUser.name}\nEmail: ${currentUser.email}\nPhone: ${currentUser.phone||'N/A'}\nDate: ${date}\nTime: ${time}\nTopic: ${topic}\nNotes: ${notes}`;
-  window.location.href=`mailto:info@swastikaconsultancy.in?subject=Meeting Request from ${currentUser.name} on ${date}&body=${encodeURIComponent(emailBody)}`;
-
-  // Save meeting locally
-  const meetings=JSON.parse(localStorage.getItem('scs_meetings_'+currentUser.email)||'[]');
-  meetings.push({date,time,topic,notes,status:'pending',booked:new Date().toISOString()});
-  localStorage.setItem('scs_meetings_'+currentUser.email,JSON.stringify(meetings));
-
-  setTimeout(()=>{
-    document.getElementById('meetingContent').innerHTML=`
+function submitMeeting() {
+  const date = document.getElementById('meetDate').value;
+  const time = document.getElementById('meetTime').value;
+  const topic = document.getElementById('meetTopic').value;
+  const notes = document.getElementById('meetNotes').value.trim();
+  if (!date || !time || !topic) { alert('Please fill Date, Time and Topic.'); return; }
+  const btn = document.getElementById('meetSubmitBtn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  const waMsg = encodeURIComponent(
+    `*MEETING REQUEST - Swastika Consultancy*\n\n` +
+    `Client: ${currentUser.name}\nEmail: ${currentUser.email}\nPhone: ${currentUser.phone||'N/A'}\n` +
+    `Date: ${date}\nTime: ${time}\nTopic: ${topic}` +
+    (notes ? `\nNotes: ${notes}` : '')
+  );
+  window.open('https://wa.me/+918011948490?text=' + waMsg, '_blank');
+  const mailBody = encodeURIComponent(`Meeting Request\n\nClient: ${currentUser.name}\nEmail: ${currentUser.email}\nPhone: ${currentUser.phone||'N/A'}\nDate: ${date}\nTime: ${time}\nTopic: ${topic}\nNotes: ${notes}`);
+  window.location.href = `mailto:info@swastikaconsultancy.com?subject=Meeting Request from ${currentUser.name}&body=${mailBody}`;
+  const meetings = JSON.parse(localStorage.getItem('scs_meetings_' + currentUser.email) || '[]');
+  meetings.push({ date, time, topic, notes, status: 'pending', booked: new Date().toISOString() });
+  localStorage.setItem('scs_meetings_' + currentUser.email, JSON.stringify(meetings));
+  setTimeout(() => {
+    document.getElementById('meetingContent').innerHTML = `
       <div class="success-screen">
         <div class="success-icon"><i class="fas fa-calendar-check"></i></div>
         <h2>Meeting Requested!</h2>
-        <p>Your meeting request for <strong>${date}</strong> at <strong>${time}</strong> has been sent.</p>
-        <p style="margin-top:8px">Topic: <strong>${topic}</strong></p>
-        <p style="font-size:13px;color:var(--gray);margin-top:12px">Our team will confirm via WhatsApp or email within a few hours.</p>
-        <div style="margin-top:24px"><button class="btn-primary" onclick="closeModal('meetingModal')"><i class="fas fa-check"></i> Done</button></div>
+        <p>Request for <strong>${date}</strong> at <strong>${time}</strong> has been sent.</p>
+        <p style="margin-top:6px;color:var(--gray);font-size:13px">Topic: ${topic}</p>
+        <p style="font-size:13px;color:var(--gray);margin-top:12px">We will confirm via WhatsApp/email soon.</p>
+        <button class="btn-primary" style="margin-top:20px" onclick="closeModal('meetingModal')"><i class="fas fa-check"></i> Done</button>
       </div>`;
-  },1500);
+  }, 1500);
 }
 
 /* ======================
    ADMIN PANEL
 ====================== */
-const ADMIN_EMAIL='admin@swastika.in';
-const ADMIN_PASS='swastika@2024';
+const ADMIN_EMAIL = 'admin@swastika.com';
+const ADMIN_PASS = 'Swastika@2026';
 
-function openAdminPanel(){
-  const e=prompt('Admin Email:');
-  const p=prompt('Admin Password:');
-  if(e===ADMIN_EMAIL&&p===ADMIN_PASS){ buildAdminPanel(); openModal('adminModal'); }
-  else alert('Invalid admin credentials.');
+function openAdminPanel() {
+  const e = prompt('Admin Email:');
+  if (!e) return;
+  const p = prompt('Admin Password:');
+  if (e === ADMIN_EMAIL && p === ADMIN_PASS) { buildAdminPanel(); openModal('adminModal'); }
+  else alert('Invalid credentials.');
 }
 
-function buildAdminPanel(){
-  const users=getUsers();
-  const allOrders=[];
-  users.forEach(u=>{
-    const orders=getUserOrders(u.email);
-    orders.forEach(o=>allOrders.push({...o,userName:u.name,userPhone:u.phone||'N/A',userEmail:u.email,userBiz:u.business||'N/A'}));
+function buildAdminPanel() {
+  const users = getUsers();
+  const allOrders = [];
+  users.forEach(u => {
+    getUserOrders(u.email).forEach(o => allOrders.push({ ...o, userName: u.name, userPhone: u.phone||'N/A', userEmail: u.email, userBiz: u.business||'—' }));
   });
-  allOrders.sort((a,b)=>new Date(b.date)-new Date(a.date));
-
-  const totalRevenue=allOrders.reduce((s,o)=>s+Number(o.price),0);
-  const pending=allOrders.filter(o=>o.status==='pending').length;
-
-  document.getElementById('adminContent').innerHTML=`
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px">
-      <div style="background:var(--primary);color:#fff;border-radius:12px;padding:18px;text-align:center">
-        <div style="font-size:28px;font-family:'Playfair Display',serif;color:var(--secondary)">${users.length}</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:4px">Total Clients</div>
+  allOrders.sort((a,b) => new Date(b.date) - new Date(a.date));
+  const totalRev = allOrders.filter(o=>o.status==='active').reduce((s,o)=>s+Number(o.price),0);
+  const pending = allOrders.filter(o=>o.status==='pending').length;
+  document.getElementById('adminContent').innerHTML = `
+    <div class="admin-stats">
+      <div class="admin-stat-card" style="background:var(--primary);color:#fff">
+        <i class="fas fa-users"></i><strong>${users.length}</strong><span>Total Clients</span>
       </div>
-      <div style="background:#ecfdf5;border-radius:12px;padding:18px;text-align:center;border:1px solid #6ee7b7">
-        <div style="font-size:28px;font-family:'Playfair Display',serif;color:#065f46">${allOrders.length}</div>
-        <div style="font-size:12px;color:#6b7280;margin-top:4px">Total Orders</div>
+      <div class="admin-stat-card" style="background:#ecfdf5;border:1px solid #6ee7b7">
+        <i class="fas fa-shopping-bag" style="color:var(--green)"></i><strong style="color:#065f46">${allOrders.length}</strong><span>Total Orders</span>
       </div>
-      <div style="background:#fffbeb;border-radius:12px;padding:18px;text-align:center;border:1px solid #fde68a">
-        <div style="font-size:28px;font-family:'Playfair Display',serif;color:#d97706">${pending}</div>
-        <div style="font-size:12px;color:#6b7280;margin-top:4px">Pending Verification</div>
+      <div class="admin-stat-card" style="background:#f0f7ff;border:1px solid #bfdbfe">
+        <i class="fas fa-rupee-sign" style="color:var(--accent)"></i><strong style="color:var(--accent)">&#8377;${totalRev.toLocaleString('en-IN')}</strong><span>Revenue Collected</span>
       </div>
+      ${pending>0?`<div class="admin-stat-card" style="background:#fffbeb;border:1px solid #fde68a"><i class="fas fa-clock" style="color:#d97706"></i><strong style="color:#d97706">${pending}</strong><span>Pending</span></div>`:''}
     </div>
-
-    <p style="font-size:15px;font-weight:600;color:var(--primary);margin-bottom:14px"><i class="fas fa-users" style="color:var(--secondary);margin-right:6px"></i> All Clients (${users.length})</p>
+    <p class="admin-section-head"><i class="fas fa-users"></i> All Registered Clients (${users.length})</p>
     <div style="overflow-x:auto;margin-bottom:24px">
-      <table style="width:100%;border-collapse:collapse;font-size:13px">
-        <thead><tr style="background:var(--primary);color:#fff">
-          <th style="padding:10px 12px;text-align:left;border-radius:8px 0 0 0">Name</th>
-          <th style="padding:10px 12px;text-align:left">Email</th>
-          <th style="padding:10px 12px;text-align:left">Phone</th>
-          <th style="padding:10px 12px;text-align:left">Business</th>
-          <th style="padding:10px 12px;text-align:left;border-radius:0 8px 0 0">Joined</th>
-        </tr></thead>
+      <table class="admin-table">
+        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Business</th><th>Packages</th><th>Joined</th></tr></thead>
         <tbody>
-          ${users.length===0?'<tr><td colspan="5" style="text-align:center;padding:20px;color:var(--gray)">No clients yet</td></tr>':
-          users.map((u,i)=>`<tr style="background:${i%2===0?'var(--light)':'#fff'};border-bottom:1px solid var(--border)">
-            <td style="padding:10px 12px;font-weight:500;color:var(--primary)">${u.name}</td>
-            <td style="padding:10px 12px;color:var(--gray)">${u.email}</td>
-            <td style="padding:10px 12px;color:var(--gray)">${u.phone||'N/A'}</td>
-            <td style="padding:10px 12px;color:var(--gray)">${u.business||'—'}</td>
-            <td style="padding:10px 12px;color:var(--gray)">${new Date(u.created).toLocaleDateString('en-IN')}</td>
-          </tr>`).join('')}
+          ${users.length===0
+            ? '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--gray)">No clients registered yet</td></tr>'
+            : users.map((u,i) => {
+                const uOrders = getUserOrders(u.email);
+                return `<tr>
+                  <td>${i+1}</td>
+                  <td><strong>${u.name}</strong></td>
+                  <td><a href="mailto:${u.email}" style="color:var(--accent)">${u.email}</a></td>
+                  <td>${u.phone||'N/A'}</td>
+                  <td>${u.business||'—'}</td>
+                  <td><span style="background:var(--primary);color:#fff;padding:3px 10px;border-radius:50px;font-size:11px">${uOrders.length} pkg</span></td>
+                  <td>${new Date(u.created).toLocaleDateString('en-IN')}</td>
+                </tr>`;
+              }).join('')
+          }
         </tbody>
       </table>
     </div>
-
-    <p style="font-size:15px;font-weight:600;color:var(--primary);margin-bottom:14px"><i class="fas fa-shopping-bag" style="color:var(--secondary);margin-right:6px"></i> All Orders (${allOrders.length})</p>
+    <p class="admin-section-head"><i class="fas fa-receipt"></i> All Orders (${allOrders.length})</p>
     <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:13px">
-        <thead><tr style="background:var(--primary);color:#fff">
-          <th style="padding:10px 12px;text-align:left">Order ID</th>
-          <th style="padding:10px 12px;text-align:left">Client</th>
-          <th style="padding:10px 12px;text-align:left">Package</th>
-          <th style="padding:10px 12px;text-align:left">Amount</th>
-          <th style="padding:10px 12px;text-align:left">Method</th>
-          <th style="padding:10px 12px;text-align:left">Date</th>
-          <th style="padding:10px 12px;text-align:left">Status</th>
-        </tr></thead>
+      <table class="admin-table">
+        <thead><tr><th>Order ID</th><th>Client</th><th>Package</th><th>Pkg Amt</th><th>Total (GST)</th><th>Razorpay ID</th><th>Date</th><th>Status</th></tr></thead>
         <tbody>
-          ${allOrders.length===0?'<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--gray)">No orders yet</td></tr>':
-          allOrders.map((o,i)=>`<tr style="background:${i%2===0?'var(--light)':'#fff'};border-bottom:1px solid var(--border)">
-            <td style="padding:10px 12px;font-family:monospace;color:var(--primary)">${o.orderId}</td>
-            <td style="padding:10px 12px"><div style="font-weight:500">${o.userName}</div><div style="color:var(--gray);font-size:11px">${o.userPhone}</div></td>
-            <td style="padding:10px 12px;color:var(--dark)">${o.name}</td>
-            <td style="padding:10px 12px;font-weight:600;color:var(--green)">&#8377;${Number(o.price).toLocaleString('en-IN')}</td>
-            <td style="padding:10px 12px;color:var(--gray)">${o.payMethod||'UPI'}</td>
-            <td style="padding:10px 12px;color:var(--gray)">${new Date(o.date).toLocaleDateString('en-IN')}</td>
-            <td style="padding:10px 12px">
-              <span style="padding:4px 10px;border-radius:50px;font-size:11px;font-weight:600;background:${o.status==='active'?'#ecfdf5':'#fffbeb'};color:${o.status==='active'?'#065f46':'#d97706'}">${o.status==='active'?'Active':'Pending'}</span>
-              ${o.status==='pending'?`<button onclick="activateOrder('${o.orderId}','${o.userEmail}')" style="margin-left:6px;padding:4px 10px;background:var(--green);color:#fff;border:none;border-radius:50px;font-size:11px;cursor:pointer;font-weight:600">Activate</button>`:''}
-            </td>
-          </tr>`).join('')}
+          ${allOrders.length===0
+            ? '<tr><td colspan="8" style="text-align:center;padding:20px;color:var(--gray)">No orders yet</td></tr>'
+            : allOrders.map((o,i) => `<tr>
+                <td style="font-family:monospace;font-size:11px">${o.orderId}</td>
+                <td><div style="font-weight:600;white-space:nowrap">${o.userName}</div><div style="font-size:11px;color:var(--gray)">${o.userPhone}</div></td>
+                <td style="white-space:nowrap">${o.name}</td>
+                <td style="color:var(--green);font-weight:600">&#8377;${Number(o.price).toLocaleString('en-IN')}</td>
+                <td style="font-weight:600">&#8377;${Number(o.total||o.price).toLocaleString('en-IN')}</td>
+                <td style="font-family:monospace;font-size:11px;color:var(--accent)">${o.rzpPaymentId||'—'}</td>
+                <td style="white-space:nowrap">${new Date(o.date).toLocaleDateString('en-IN')}</td>
+                <td><span style="padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;background:${o.status==='active'?'#ecfdf5':'#fffbeb'};color:${o.status==='active'?'#065f46':'#d97706'}">${o.status==='active'?'✓ Active':'⏳ Pending'}</span></td>
+              </tr>`).join('')
+          }
         </tbody>
       </table>
     </div>
-    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:16px"><i class="fas fa-info-circle"></i> Data stored in browser. For server-based admin, connect to a backend.</p>
+    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:20px"><i class="fas fa-database"></i> All data stored in browser localStorage. For production, connect to a backend database.</p>
   `;
-}
-
-function activateOrder(orderId, userEmail){
-  const orders=getUserOrders(userEmail);
-  const idx=orders.findIndex(o=>o.orderId===orderId);
-  if(idx>-1){ orders[idx].status='active'; saveUserOrders(userEmail,orders); buildAdminPanel(); }
 }
 
 /* ======================
    WHATSAPP SUPPORT
 ====================== */
-function whatsappSupport(){
-  const msg=currentUser?`Hi, I am ${currentUser.name} (${currentUser.email}). I need support from Swastika Consultancy.`:`Hi, I need support from Swastika Consultancy.`;
-  window.open('https://wa.me/919999999999?text='+encodeURIComponent(msg),'_blank');
+function whatsappSupport() {
+  const msg = currentUser
+    ? `Hi, I am ${currentUser.name} (${currentUser.email}). I need support from Swastika Consultancy.`
+    : `Hi, I need support from Swastika Consultancy.`;
+  window.open('https://wa.me/+918011948490?text=' + encodeURIComponent(msg), '_blank');
 }
 
+/* ======================
+   MOBILE NAV TOGGLE
+====================== */
+document.getElementById('menuToggle').addEventListener('click', () => {
+  const menu = document.getElementById('navMenu');
+  const icon = document.querySelector('#menuToggle i');
+  menu.classList.toggle('open');
+  icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navMenu').classList.remove('open');
+    document.querySelector('#menuToggle i').className = 'fas fa-bars';
+  });
+});
+
 console.log('%cSwastika Consultancy Services','color:#C9973A;font-size:18px;font-weight:bold');
-console.log('%cAdmin login: admin@swastika.in / swastika@2024','color:#666');
+console.log('%cAdmin: admin@swastika.com / Swastika@2026','color:#666');
+console.log('%c⚠ Replace RZP_KEY with your Razorpay key to go live!','color:#d97706;font-weight:bold');
+
 </script>
 
-<!-- ============================================================
-     MEETING MODAL
-============================================================ -->
+<!-- MEETING MODAL -->
 <div class="modal-overlay" id="meetingModal">
-  <div class="modal-box" style="max-width:500px">
+  <div class="modal-box" style="max-width:480px">
     <div class="modal-header">
-      <h2><i class="fas fa-calendar-check" style="color:var(--secondary);margin-right:8px"></i>Schedule a Meeting</h2>
+      <h2><i class="fas fa-calendar-alt" style="color:var(--secondary);margin-right:8px;font-size:20px"></i>Schedule a Meeting</h2>
       <button class="modal-close" onclick="closeModal('meetingModal')"><i class="fas fa-times"></i></button>
     </div>
     <div class="modal-body" id="meetingContent">
-      <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Book a meeting with our team. We will confirm via WhatsApp/email within a few hours.</p>
+      <p style="font-size:13px;color:var(--gray);margin-bottom:20px">Book a consultation with our team. We will confirm your slot via WhatsApp and Email.</p>
       <div class="auth-input-group">
         <label>Preferred Date <span style="color:#dc2626">*</span></label>
-        <input type="date" id="meetDate" min="">
+        <input type="date" id="meetDate" class="meet-input">
       </div>
       <div class="auth-input-group">
-        <label>Preferred Time <span style="color:#dc2626">*</span></label>
-        <select id="meetTime" style="width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;background:#fff">
-          <option value="">-- Select time slot --</option>
+        <label>Time Slot <span style="color:#dc2626">*</span></label>
+        <select id="meetTime" class="meet-input">
+          <option value="">-- Select a time slot --</option>
           <option>10:00 AM – 11:00 AM</option>
           <option>11:00 AM – 12:00 PM</option>
-          <option>12:00 PM – 1:00 PM</option>
-          <option>2:00 PM – 3:00 PM</option>
-          <option>3:00 PM – 4:00 PM</option>
-          <option>4:00 PM – 5:00 PM</option>
-          <option>5:00 PM – 6:00 PM</option>
+          <option>12:00 PM – 01:00 PM</option>
+          <option>02:00 PM – 03:00 PM</option>
+          <option>03:00 PM – 04:00 PM</option>
+          <option>04:00 PM – 05:00 PM</option>
+          <option>05:00 PM – 06:00 PM</option>
         </select>
       </div>
       <div class="auth-input-group">
         <label>Meeting Topic <span style="color:#dc2626">*</span></label>
-        <select id="meetTopic" style="width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;background:#fff">
+        <select id="meetTopic" class="meet-input">
           <option value="">-- Select topic --</option>
           <option>GST Registration / Filing</option>
           <option>TDS / TCS Compliance</option>
@@ -1848,16 +1902,16 @@ console.log('%cAdmin login: admin@swastika.in / swastika@2024','color:#666');
           <option>Accounting &amp; Bookkeeping</option>
           <option>Income Tax Return</option>
           <option>Package Query / Pricing</option>
-          <option>New Business Setup</option>
+          <option>New Business Setup / Registration</option>
           <option>Other</option>
         </select>
       </div>
       <div class="auth-input-group">
-        <label>Additional Notes (Optional)</label>
-        <textarea id="meetNotes" placeholder="Any specific questions or requirements..." style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;resize:vertical;min-height:80px"></textarea>
+        <label>Additional Notes</label>
+        <textarea id="meetNotes" class="meet-input" placeholder="Any specific questions or requirements..." style="min-height:80px;resize:vertical"></textarea>
       </div>
       <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:13px;color:#92400e">
-        <i class="fas fa-info-circle"></i> Your request will be sent via <strong>WhatsApp</strong> and <strong>Email</strong> to our team. Working hours: Mon–Sat, 9:30 AM – 7:00 PM.
+        <i class="fas fa-info-circle"></i> Your request goes to us via <strong>WhatsApp + Email</strong>. Working hours: Mon–Sat 9:30 AM – 7:00 PM.
       </div>
       <button id="meetSubmitBtn" class="auth-submit" onclick="submitMeeting()">
         <i class="fas fa-paper-plane"></i> Send Meeting Request
@@ -1866,17 +1920,15 @@ console.log('%cAdmin login: admin@swastika.in / swastika@2024','color:#666');
   </div>
 </div>
 
-<!-- ============================================================
-     ADMIN PANEL MODAL
-============================================================ -->
+<!-- ADMIN PANEL MODAL -->
 <div class="modal-overlay" id="adminModal">
-  <div class="modal-box" style="max-width:960px;max-height:90vh">
-    <div class="modal-header" style="background:var(--primary);border-radius:24px 24px 0 0;padding:20px 28px;margin-bottom:0">
-      <h2 style="color:#fff;font-size:20px"><i class="fas fa-user-shield" style="color:var(--secondary);margin-right:8px"></i>Admin Panel — Swastika Consultancy</h2>
+  <div class="modal-box" style="max-width:1000px;max-height:92vh">
+    <div class="modal-header" style="background:var(--primary);border-radius:24px 24px 0 0;padding:20px 28px">
+      <h2 style="color:#fff;font-size:19px"><i class="fas fa-user-shield" style="color:var(--secondary);margin-right:8px"></i>Admin Panel — Swastika Consultancy</h2>
       <button class="modal-close" onclick="closeModal('adminModal')" style="background:rgba(255,255,255,.15);color:#fff"><i class="fas fa-times"></i></button>
     </div>
     <div class="modal-body" id="adminContent" style="padding:24px 28px">
-      <p style="color:var(--gray);text-align:center">Loading...</p>
+      <p style="color:var(--gray);text-align:center;padding:20px">Loading admin panel...</p>
     </div>
   </div>
 </div>
